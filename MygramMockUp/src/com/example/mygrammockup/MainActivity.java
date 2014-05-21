@@ -10,6 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
+	
+	private static Integer selected;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +32,30 @@ public class MainActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				// Get the text
+				MainActivity.highlight(view, position);
 				String snippet = (String)inboxView.getAdapter().getItem(position);		
 				Toast.makeText(getApplicationContext(), snippet, Toast.LENGTH_SHORT).show();
 			}
 		});
+	}
+
+	public void goToConversation(View v) {
+		//Go to selected conversation
+		Toast.makeText(getApplicationContext(), fetchMail()[selected], Toast.LENGTH_SHORT).show();
+	}
+	
+	protected static void highlight(View view, int position) {
+		// If an item was previously selected
+		if(selected != null) {
+			//Toggle previous selection highlight
+			ListView parent = (ListView)view.getParent();
+			View previous = (View) parent.getChildAt(selected);
+			previous.setBackgroundColor(-1);	
+		}
+		
+		//Set selected to current position, Highlight selected
+		view.setBackgroundColor(-3355444);
+		MainActivity.selected = position;
 	}
 
 	private String[] fetchMail() {
