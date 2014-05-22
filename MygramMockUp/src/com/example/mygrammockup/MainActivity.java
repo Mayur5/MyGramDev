@@ -1,12 +1,12 @@
 package com.example.mygrammockup;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	
@@ -41,7 +41,9 @@ public class MainActivity extends Activity {
 
 	public void goToConversation(View v) {
 		//Go to selected conversation
-		Toast.makeText(getApplicationContext(), fetchMail()[selected], Toast.LENGTH_SHORT).show();
+		//
+		Intent intent = new Intent(this, ConversationActivity.class);
+		startActivity(intent);
 	}
 	
 	private String[] fetchMail() {

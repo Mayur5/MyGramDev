@@ -6,5 +6,10 @@
     <string name="action_settings">Settings</string>
     <string name="go">GO</string>
     <string name="from">from</string>
+    <string name="title_activity_conversation">ConversationActivity</string>
+    <string name="compose_hint">Text reply...</string>
+    <string name="image_reply">IMAGE</string>
+    <string name="pictogram_reply">=)</string>
+    <string name="file_reply">FILE</string>
 
 </resources>
