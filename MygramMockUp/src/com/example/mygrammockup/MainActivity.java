@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -31,10 +30,11 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				// Get the text
-				MainActivity.highlight(view, position);
-				String snippet = (String)inboxView.getAdapter().getItem(position);		
-				Toast.makeText(getApplicationContext(), snippet, Toast.LENGTH_SHORT).show();
+				// Set selected on view
+				view.setSelected(true);
+				
+				//Set global selected to position
+				MainActivity.selected = position;
 			}
 		});
 	}
@@ -44,22 +44,8 @@ public class MainActivity extends Activity {
 		Toast.makeText(getApplicationContext(), fetchMail()[selected], Toast.LENGTH_SHORT).show();
 	}
 	
-	protected static void highlight(View view, int position) {
-		// If an item was previously selected
-		if(selected != null) {
-			//Toggle previous selection highlight
-			ListView parent = (ListView)view.getParent();
-			View previous = (View) parent.getChildAt(selected);
-			previous.setBackgroundColor(-1);	
-		}
-		
-		//Set selected to current position, Highlight selected
-		view.setBackgroundColor(-3355444);
-		MainActivity.selected = position;
-	}
-
 	private String[] fetchMail() {
-		String[] threads = new String[] {
+		String[] conversations = new String[] {
 				"Oi! Call when you can",
 				"9863647272",
 				"Thanks - that was great fun...",
@@ -73,7 +59,7 @@ public class MainActivity extends Activity {
 				"=)"
 		};
 		
-		return threads;
+		return conversations;
 	}
 	
 	

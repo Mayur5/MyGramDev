@@ -14,14 +14,14 @@ public class InboxAdapter extends ArrayAdapter<String> {
 	private final String[] values;
 	
 	public InboxAdapter(Context context, String[] values) {
-		super(context, R.layout.inbox_view, values);
+		super(context, R.layout.inbox_item, values);
 		this.context = context;
 		this.values = values;
 	}
 	
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View rowView = inflater.inflate(R.layout.inbox_view, parent, false);
+		View rowView = inflater.inflate(R.layout.inbox_item, parent, false);
 		TextView textView = (TextView)rowView.findViewById(R.id.conversation_snippet);
 		ImageView imageView = (ImageView)rowView.findViewById(R.id.profile_pic);
 		textView.setText(values[position]);
