@@ -46,7 +46,6 @@ public class MainActivity extends Activity {
 	}
 
 	public void goToConversation(View v) {
-		//Go to selected conversation
 		//
 		Intent intent = new Intent(this, ConversationActivity.class);
 		startActivity(intent);
