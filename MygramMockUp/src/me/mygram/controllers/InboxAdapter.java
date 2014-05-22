@@ -1,4 +1,9 @@
-package com.example.mygrammockup;
+package me.mygram.controllers;
+
+import com.example.mygrammockup.R;
+import com.example.mygrammockup.R.drawable;
+import com.example.mygrammockup.R.id;
+import com.example.mygrammockup.R.layout;
 
 import android.content.Context;
 import android.view.LayoutInflater;

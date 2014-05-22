@@ -1,4 +1,7 @@
-package com.example.mygrammockup;
+package me.mygram.views;
+
+import com.example.mygrammockup.R;
+import com.example.mygrammockup.R.layout;
 
 import android.app.Activity;
 import android.app.ActionBar;
