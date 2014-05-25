@@ -3,9 +3,6 @@ package me.mygram.views;
 import me.mygram.controllers.InboxAdapter;
 
 import com.example.mygrammockup.R;
-import com.example.mygrammockup.R.id;
-import com.example.mygrammockup.R.layout;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
