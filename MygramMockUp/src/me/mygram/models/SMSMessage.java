@@ -4,7 +4,7 @@ import java.util.Date;
 
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 
-public abstract class GenericSMS implements GenericMessage{
+public abstract class SMSMessage extends Message{
 	
 	public Phone fromPhoneNumber() {
 		return null;

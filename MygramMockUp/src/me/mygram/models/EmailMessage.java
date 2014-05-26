@@ -5,7 +5,7 @@ import java.util.Date;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.webkit.MimeTypeMap;
 
-public abstract class GenericEmail implements GenericMessage {
+public abstract class EmailMessage extends Message {
 	
 	public Email getSender() {
 		return null;
