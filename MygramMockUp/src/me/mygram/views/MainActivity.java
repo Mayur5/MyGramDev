@@ -1,6 +1,10 @@
 package me.mygram.views;
 
-import me.mygram.controllers.adapters.InboxAdapter;
+import java.util.ArrayList;
+
+import me.mygram.controllers.adapters.InboxViewAdapter;
+import me.mygram.models.Conversation;
+import me.mygram.models.Inbox;
 
 import com.example.mygrammockup.R;
 
@@ -22,11 +26,11 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		//Fetch Inbox emails
-		final String[] inboxArray = fetchMail();
+		final Inbox inbox = fetchMail();
 		
 		///Populate Inbox ListView
 		final ListView inboxView = (ListView)findViewById(R.id.inboxView);
-		final InboxAdapter adapter = new InboxAdapter(this, inboxArray);
+		final InboxViewAdapter adapter = new InboxViewAdapter(this, R.layout.inbox_item, inbox);
 		inboxView.setAdapter(adapter);
 		
 		//Set clickListener
@@ -49,8 +53,9 @@ public class MainActivity extends Activity {
 		startActivity(intent);
 	}
 	
-	private String[] fetchMail() {
-		String[] conversations = new String[] {
+	private Inbox fetchMail() {
+		ArrayList<Conversation> conversations = new ArrayList<Conversation>();
+		String[] snippets = new String[] {
 				"Oi! Call when you can",
 				"9863647272",
 				"Thanks - that was great fun...",
@@ -64,7 +69,15 @@ public class MainActivity extends Activity {
 				"=)"
 		};
 		
-		return conversations;
+		for(int i=0; i<10; i++) {
+			Conversation c = new Conversation();
+			c.setSnippet(snippets[i]);
+			conversations.add(c);
+		}
+		
+		Inbox inbox = new Inbox(conversations);
+		
+		return inbox;
 	}
 	
 	
