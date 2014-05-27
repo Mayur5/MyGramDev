@@ -1,4 +1,4 @@
-package me.mygram.controllers;
+package me.mygram.controllers.adapters;
 
 import com.example.mygrammockup.R;
 import com.example.mygrammockup.R.drawable;
@@ -35,8 +35,4 @@ public class InboxAdapter extends ArrayAdapter<String> {
 		return rowView;
 		
 	}
-
-
-	
-
 }

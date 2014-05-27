@@ -1,8 +1,9 @@
 package me.mygram.views;
 
-import me.mygram.controllers.InboxAdapter;
+import me.mygram.controllers.adapters.InboxAdapter;
 
 import com.example.mygrammockup.R;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
