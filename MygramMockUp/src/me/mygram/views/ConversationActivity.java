@@ -1,18 +1,12 @@
 package me.mygram.views;
 
-import com.example.mygrammockup.R;
-import com.example.mygrammockup.R.layout;
+import me.mygram.models.Conversation;
 
+import com.example.mygrammockup.R;
 import android.app.Activity;
-import android.app.ActionBar;
-import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.Toast;
 
 public class ConversationActivity extends Activity {
 
@@ -20,8 +14,13 @@ public class ConversationActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_conversation);
-
 		
+		Intent intent = getIntent();
+		
+		Conversation conversation = (Conversation) intent.getSerializableExtra("selectedConversation");
+
+		Toast toast = Toast.makeText(this, conversation.getSnippet(), Toast.LENGTH_SHORT);
+		toast.show();		
 	}
 
 }

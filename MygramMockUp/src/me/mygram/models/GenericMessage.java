@@ -2,8 +2,6 @@ package me.mygram.models;
 
 import java.util.Date;
 
-import android.provider.ContactsContract.CommonDataKinds.Email;
-
 public interface GenericMessage {
 
 	public Object getSender();

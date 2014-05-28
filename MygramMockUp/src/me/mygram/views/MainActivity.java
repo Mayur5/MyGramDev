@@ -1,7 +1,5 @@
 package me.mygram.views;
 
-import java.util.ArrayList;
-
 import me.mygram.controllers.adapters.InboxViewAdapter;
 import me.mygram.controllers.factories.MailServiceFactory;
 import me.mygram.controllers.services.MailService;
@@ -57,6 +55,8 @@ public class MainActivity extends Activity {
 	public void goToConversation(View v) {
 		//
 		Intent intent = new Intent(this, ConversationActivity.class);
+		Conversation selectedConversation = inbox.getConversation(MainActivity.selected);
+		intent.putExtra("selectedConversation", selectedConversation);
 		startActivity(intent);
 	}
 	

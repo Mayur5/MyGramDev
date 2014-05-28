@@ -1,9 +1,14 @@
 package me.mygram.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Conversation {
+public class Conversation implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 797774581112946203L;
 	private ArrayList<Message> conversations;
 	private String snippet;
 	
