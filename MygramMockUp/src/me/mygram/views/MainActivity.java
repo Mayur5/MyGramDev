@@ -3,6 +3,7 @@ package me.mygram.views;
 import java.util.ArrayList;
 
 import me.mygram.controllers.adapters.InboxViewAdapter;
+import me.mygram.controllers.factories.MailServiceFactory;
 import me.mygram.controllers.services.MailService;
 import me.mygram.models.Conversation;
 import me.mygram.models.Inbox;
@@ -28,7 +29,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		//Set mailService to new mail service
-		MailService mailService = new MailService(this);
+		MailService mailService = MailServiceFactory.getMailService(this);
 		inbox.setMailService(mailService);
 		
 		//Fetch Inbox emails
