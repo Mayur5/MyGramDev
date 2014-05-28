@@ -3,6 +3,7 @@ package me.mygram.views;
 import java.util.ArrayList;
 
 import me.mygram.controllers.adapters.InboxViewAdapter;
+import me.mygram.controllers.services.MailService;
 import me.mygram.models.Conversation;
 import me.mygram.models.Inbox;
 
@@ -19,14 +20,19 @@ import android.widget.ListView;
 public class MainActivity extends Activity {
 	
 	private static Integer selected;
+	protected static Inbox inbox = new Inbox();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		//Set mailService to new mail service
+		MailService mailService = new MailService(this);
+		inbox.setMailService(mailService);
+		
 		//Fetch Inbox emails
-		final Inbox inbox = fetchMail();
+		inbox.sync();
 		
 		///Populate Inbox ListView
 		final ListView inboxView = (ListView)findViewById(R.id.inboxView);
@@ -52,33 +58,5 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(this, ConversationActivity.class);
 		startActivity(intent);
 	}
-	
-	private Inbox fetchMail() {
-		ArrayList<Conversation> conversations = new ArrayList<Conversation>();
-		String[] snippets = new String[] {
-				"Oi! Call when you can",
-				"9863647272",
-				"Thanks - that was great fun...",
-				"Call when you're free pls - it's urgent.",
-				"Thank you",
-				"arumugam@seventyfive.com",
-				"lol",
-				"Bring some salt also.",
-				"You have won 10,000 rupees in our...",
-				"Hey what's srivats's number?",
-				"=)"
-		};
-		
-		for(int i=0; i<10; i++) {
-			Conversation c = new Conversation();
-			c.setSnippet(snippets[i]);
-			conversations.add(c);
-		}
-		
-		Inbox inbox = new Inbox(conversations);
-		
-		return inbox;
-	}
-	
 	
 }

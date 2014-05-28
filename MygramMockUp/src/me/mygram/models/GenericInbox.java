@@ -2,9 +2,15 @@ package me.mygram.models;
 
 import java.util.ArrayList;
 
+import me.mygram.controllers.services.MailService;
+
 public interface GenericInbox {
 	
 	public int size();
+	
+	public void setMailService(MailService mailService);
+	
+	public void sync();
 	
 	public ArrayList<Conversation> getConversations();
 	
