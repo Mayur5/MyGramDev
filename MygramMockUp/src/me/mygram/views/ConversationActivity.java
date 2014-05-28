@@ -15,12 +15,15 @@ public class ConversationActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_conversation);
 		
+		//Get the intent
 		Intent intent = getIntent();
 		
-		Conversation conversation = (Conversation) intent.getSerializableExtra("selectedConversation");
-
-		Toast toast = Toast.makeText(this, conversation.getSnippet(), Toast.LENGTH_SHORT);
-		toast.show();		
+		//Check if intent has extras, if so TODO: inflate listView
+		if(intent.hasExtra("selectedConversation")) {
+			Conversation conversation = (Conversation) intent.getSerializableExtra("selectedConversation");
+			Toast toast = Toast.makeText(this, conversation.getSnippet(), Toast.LENGTH_SHORT);
+			toast.show();		
+		}
 	}
 
 }

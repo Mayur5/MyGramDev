@@ -52,11 +52,14 @@ public class MainActivity extends Activity {
 		});
 	}
 
-	public void goToConversation(View v) {
+	public void goToConversationView(View v) {
 		//
 		Intent intent = new Intent(this, ConversationActivity.class);
-		Conversation selectedConversation = inbox.getConversation(MainActivity.selected);
-		intent.putExtra("selectedConversation", selectedConversation);
+		if(MainActivity.selected != null) {
+			//Pass selected conversation
+			Conversation selectedConversation = inbox.getConversation(MainActivity.selected);
+			intent.putExtra("selectedConversation", selectedConversation);
+		}
 		startActivity(intent);
 	}
 	
