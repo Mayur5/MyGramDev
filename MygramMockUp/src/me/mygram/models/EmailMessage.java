@@ -4,14 +4,13 @@ import java.io.File;
 import java.util.Date;
 
 import android.provider.ContactsContract.CommonDataKinds.Email;
-import android.text.Html;
 
 public abstract class EmailMessage extends Message {
 	
 	private Email sender;
 	private Email receiver;
 	private String subject;
-	protected Html body;
+	protected String body;
 	private Date sentTimeStamp;
 	private Date receivedTimeStamp;
 	private MessageStatus Status;
@@ -52,12 +51,8 @@ public abstract class EmailMessage extends Message {
 		return body.toString();
 	}
 	
-	public Html getHtmlBody() {
-		return body;
-	}
-
 	public void setBody(String body) {
-		this.body = (Html) Html.fromHtml(body);
+		this.body = body;
 	}
 
 	public Date getSentTimeStamp() {

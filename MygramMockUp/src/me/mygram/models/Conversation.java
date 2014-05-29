@@ -9,7 +9,7 @@ public class Conversation implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 797774581112946203L;
-	private ArrayList<Message> messages;
+	private ArrayList<Message> messages = new ArrayList<Message>();
 	
 	public Conversation(){
 		super();

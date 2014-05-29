@@ -23,5 +23,6 @@
         android:text="@+id/label"
         android:textSize="30sp" >
     </TextView>
+    
  
 </LinearLayout>
