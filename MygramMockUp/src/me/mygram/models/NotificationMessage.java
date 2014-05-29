@@ -4,49 +4,39 @@ import java.util.Date;
 
 public abstract class NotificationMessage extends Message {
 
-	public Object getSender() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void setSender(Object sender) {
-		// TODO Auto-generated method stub
+	private String body;
+	private Date sentTimeStamp;
+	private Date receivedTimeStamp;
+	private MessageStatus Status;
 		
+	public NotificationMessage() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-
-	public Object getReceiver() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getBody() {
+		return body;
 	}
-
-	public void setReceiver(Object receiver) {
-		// TODO Auto-generated method stub
-		
+	public void setBody(String body) {
+		this.body = body;
 	}
-
-	public String getMessageBody() {
-		// TODO Auto-generated method stub
-		return null;
+	public Date getSentTimeStamp() {
+		return sentTimeStamp;
 	}
-
-	public void setMessageBody(String body) {
-		// TODO Auto-generated method stub
-		
+	public void setSentTimeStamp(Date sentTimeStamp) {
+		this.sentTimeStamp = sentTimeStamp;
 	}
-
-	public Date sentTimeStamp() {
-		// TODO Auto-generated method stub
-		return null;
+	public Date getReceivedTimeStamp() {
+		return receivedTimeStamp;
 	}
-
-	public Date receivedTimeStamp() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setReceivedTimeStamp(Date receivedTimeStamp) {
+		this.receivedTimeStamp = receivedTimeStamp;
 	}
-
-	public MessageStatus status() {
-		// TODO Auto-generated method stub
-		return null;
-	}	
-
+	public MessageStatus getStatus() {
+		return Status;
+	}
+	public void setStatus(MessageStatus status) {
+		Status = status;
+	}
+	
+	
 }

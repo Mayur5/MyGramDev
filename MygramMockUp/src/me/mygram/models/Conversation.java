@@ -9,32 +9,35 @@ public class Conversation implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 797774581112946203L;
-	private ArrayList<Message> conversations;
-	private String snippet;
+	private ArrayList<Message> messages;
 	
 	public Conversation(){
 		super();
 	}
 	
-	public Conversation(ArrayList<Message> conversations) {
+	public Conversation(ArrayList<Message> messages) {
 		super();
-		this.conversations = conversations;
+		this.messages = messages;
 	}
 	
-	public ArrayList<Message> getConversations() {
-		return conversations;
+	public Message getMessageAt(int index) {
+		return messages.get(index);
+	}
+	
+	public ArrayList<Message> getMessages() {
+		return messages;
 	}
 
-	public void setConversations(ArrayList<Message> conversations) {
-		this.conversations = conversations;
+	public void setMessages(ArrayList<Message> conversations) {
+		this.messages = conversations;
 	}
 
 	public String getSnippet() {
-		return snippet;
+		return messages.get(messages.size() - 1).toString();
 	}
 
-	public void setSnippet(String snippet) {
-		this.snippet = snippet;
+	public void appendMessage(Message message) {
+		// TODO Auto-generated method stub
+		messages.add(message);
 	}
-
 }

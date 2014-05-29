@@ -3,6 +3,10 @@ package me.mygram.models;
 import java.util.Date;
 
 public abstract class Message implements GenericMessage{
+	
+	public String toString(){
+		return this.getBody();
+	}
 
 	@Override
 	public Object getSender() {
@@ -29,13 +33,13 @@ public abstract class Message implements GenericMessage{
 	}
 
 	@Override
-	public String getMessageBody() {
+	public String getBody() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void setMessageBody(String body) {
+	public void setBody(String body) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -1,74 +1,106 @@
 package me.mygram.models;
 
+import java.io.File;
 import java.util.Date;
 
 import android.provider.ContactsContract.CommonDataKinds.Email;
-import android.webkit.MimeTypeMap;
+import android.text.Html;
 
 public abstract class EmailMessage extends Message {
 	
+	private Email sender;
+	private Email receiver;
+	private String subject;
+	protected Html body;
+	private Date sentTimeStamp;
+	private Date receivedTimeStamp;
+	private MessageStatus Status;
+	private String attachmentType;
+	private File attachment;
+	
+	public EmailMessage() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Email getSender() {
-		return null;
+		return sender;
 	}
-	
-	public void setSender(Email senderEmail) {
+
+	public void setSender(Email sender) {
+		this.sender = sender;
 	}
-	
+
 	public Email getReceiver() {
-		return null;
+		return receiver;
 	}
-	
-	public void setReceiver(Email receiverEmail) {
+
+	public void setReceiver(Email receiver) {
+		this.receiver = receiver;
 	}
-	
+
 	public String getSubject() {
-		return null;
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+
+	@Override
+	public String getBody() {
+		return body.toString();
 	}
 	
-	public String setSubject() {
-		return null;
+	public Html getHtmlBody() {
+		return body;
 	}
-	
-	public String getMessageBody() {
-		return null;
+
+	public void setBody(String body) {
+		this.body = (Html) Html.fromHtml(body);
 	}
-	
-	public String setMessageBody() {
-		return null;
+
+	public Date getSentTimeStamp() {
+		return sentTimeStamp;
 	}
-	
-	public String getFooter() {
-		return null;
+
+	public void setSentTimeStamp(Date sentTimeStamp) {
+		this.sentTimeStamp = sentTimeStamp;
 	}
-	
-	public String setFooter() {
-		return null;
+
+	public Date getReceivedTimeStamp() {
+		return receivedTimeStamp;
 	}
-	
+
+	public void setReceivedTimeStamp(Date receivedTimeStamp) {
+		this.receivedTimeStamp = receivedTimeStamp;
+	}
+
+	public MessageStatus getStatus() {
+		return Status;
+	}
+
+	public void setStatus(MessageStatus status) {
+		Status = status;
+	}
+
+	public String getAttachmentType() {
+		return attachmentType;
+	}
+
+	public void setAttachmentType(String attachmentType) {
+		this.attachmentType = attachmentType;
+	}
+
+	public File getAttachment() {
+		return attachment;
+	}
+
+	public void setAttachment(File attachment) {
+		this.attachment = attachment;
+	}
+
 	public Boolean hasAttachment() {
-		return null;
-	}
-	
-	public MimeTypeMap getAttachmentType() {
-		return null;
-	}
-	
-	public Attachment getAttachment() {
-		return null;
-	}
-	
-	public void setAttachment(Attachment attachment) {
-	}
-	
-	public Date sentTimeStamp() {
-		return null;
-	}
-	
-	public Date receivedTimeStamp() {
-		return null;
-	}
-	
-	public MessageStatus status() {
 		return null;
 	}
 
