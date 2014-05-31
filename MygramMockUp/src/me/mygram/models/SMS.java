@@ -1,6 +1,13 @@
 package me.mygram.models;
 
-public class SMS extends SMSMessage {
+import java.io.Serializable;
+
+public class SMS extends SMSMessage implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1487310406135836813L;
 
 	public SMS(String body) {
 		// TODO Auto-generated constructor stub
@@ -8,9 +15,23 @@ public class SMS extends SMSMessage {
 	}
 
 	@Override
-	public String typeOfMessage() {
+	public boolean isEmail() {
 		// TODO Auto-generated method stub
-		return "SMS";
+		return false;
 	}
+
+	@Override
+	public boolean isSMS() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isNotification() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	
 
 }

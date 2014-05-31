@@ -4,8 +4,6 @@ import java.util.Date;
 
 public interface GenericMessage {
 	
-	public String typeOfMessage();
-	
 	public String toString();
 
 	public Object getSender();
@@ -22,8 +20,14 @@ public interface GenericMessage {
 	
 	public MessageStatus status();
 
-	String getBody();
+	public String getBody();
 
 	void setBody(String body);
+	
+	public boolean isEmail();
+	
+	public boolean isSMS();
+	
+	public boolean isNotification();
 	
 }

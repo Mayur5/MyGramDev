@@ -1,12 +1,17 @@
 package me.mygram.models;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.Date;
 
 import android.provider.ContactsContract.CommonDataKinds.Email;
 
-public abstract class EmailMessage extends Message {
+public abstract class EmailMessage extends Message implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2891990293197457411L;
 	private Email sender;
 	private Email receiver;
 	private String subject;
