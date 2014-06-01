@@ -34,9 +34,9 @@ public class MailService implements GenericMailService{
         final int pic4=0x7f020006;
         final int pic5=0x7f020007;
         final int pic6=0x7f020008;
-        final int pic7=0x7f020009;
+        final int from=0x7f020001;
 		
-		Contact self = new Contact("Harini", "Appaiah").setProfilePic(pic7);;
+		Contact self = new Contact("Harini", "Appaiah").setProfilePic(from);;
 		ArrayList<Conversation> conversations = new ArrayList<Conversation>();
 		
 		Conversation a = new Conversation();

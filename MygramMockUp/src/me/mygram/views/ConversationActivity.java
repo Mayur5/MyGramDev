@@ -9,7 +9,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class ConversationActivity extends Activity {
 
@@ -30,9 +29,7 @@ public class ConversationActivity extends Activity {
 			conversationView.setAdapter(adapter);
 			
 			//Conversation item Clicklistener
-			
-			Toast toast = Toast.makeText(this, conversation.getSnippet(), Toast.LENGTH_SHORT);
-			toast.show();	
+
 		}
 	}
 }
