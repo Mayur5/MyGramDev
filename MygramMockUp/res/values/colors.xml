@@ -2,6 +2,7 @@
 <resources>
 
    	<color name="selected_color">#4d90fe</color>
-   	<color name="default_color">#ffffff</color>    
+   	<color name="default_color">#ffffff</color> 
+   	<color name="grey">#efefefef</color>
 
 </resources>

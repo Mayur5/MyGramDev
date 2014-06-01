@@ -77,6 +77,14 @@ public class Contact implements GenericContact, Serializable {
 		this.profilePic = profilePic;
 		return this;
 	}
+
+	public boolean isSelf() {
+		// TODO Auto-generated method stub
+		if(this.getFirstName().equals("Harini")) {
+			return true;
+		}
+		return false;
+	}
 	
 	
 

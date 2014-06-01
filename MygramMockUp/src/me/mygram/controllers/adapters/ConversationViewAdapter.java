@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -30,20 +29,13 @@ public class ConversationViewAdapter extends ArrayAdapter<Message> {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View rowView = inflater.inflate(R.layout.conversation_item, parent, false);
 		TextView textView = (TextView)rowView.findViewById(R.id.message_text);
-		ImageView imageView = (ImageView)rowView.findViewById(R.id.conversation_profile_pic);
 		textView.setText(conversation.getMessageAt(position).toString());
-		imageView.setImageResource(correspondent.getProfilePic());
 		
-		if (correspondent.getFirstName().equals("Harini")) {
+		if (correspondent.isSelf()) {
 			RelativeLayout.LayoutParams textViewParams = (RelativeLayout.LayoutParams)textView.getLayoutParams();
-			textViewParams.addRule(RelativeLayout.LEFT_OF, 0);
-			textViewParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);;
+			textViewParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, 0);
+			textViewParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 			textView.setLayoutParams(textViewParams);
-			
-			RelativeLayout.LayoutParams imageViewParams = (RelativeLayout.LayoutParams)imageView.getLayoutParams();
-			//imageViewParams.addRule(RelativeLayout.RIGHT_OF, R.id.message_text);
-			imageViewParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-			imageView.setLayoutParams(imageViewParams);
 		}
 		
 		return rowView;
