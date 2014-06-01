@@ -43,7 +43,7 @@ public class MailService implements GenericMailService{
 		Contact contactA = new Contact("Lokesh", "Jagannathan").setProfilePic(pic1);
 		a.setCorrespondent(contactA);
 		a.appendMessage(new Mail("Oi! Call when you can").setCorrespondent(contactA));
-		a.appendMessage(new SMS("9863647272").setCorrespondent(contactA));
+		a.appendMessage(new SMS("9863647272").setCorrespondent(self));
 		a.appendMessage(new SMS("Thanks - that was great fun...").setCorrespondent(self));
 		a.appendMessage(new Mail("Call when you're free pls - it's urgent.").setCorrespondent(contactA));		
 		a.appendMessage(new SMS("Thank you").setCorrespondent(self));

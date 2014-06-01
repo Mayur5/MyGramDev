@@ -36,7 +36,7 @@ public class Conversation implements Serializable {
 	public String getSnippet() {
 		String snippet = messages.get(messages.size() - 1).toString();
 		if (snippet.length() > 30) { 
-			snippet = snippet.substring(0, Math.min(snippet.length(), 30)) + "...";
+			snippet = snippet.substring(0, Math.min(snippet.length(), 10)) + "...";
 		}
 		return snippet;
 	}

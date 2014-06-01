@@ -19,14 +19,14 @@
     	android:layout_height="0dp"
     	android:layout_weight="1" /> 
     
-    <EditText 
-        android:id="@+id/compose_edit_text"
-        android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:inputType="none"
-		android:scrollHorizontally="true"
-        android:hint="@string/compose_hint"
-        android:imeOptions="actionSend"/>
+<!--     <EditText  -->
+<!--         android:id="@+id/compose_edit_text" -->
+<!--         android:layout_width="fill_parent" -->
+<!-- 		android:layout_height="wrap_content" -->
+<!-- 		android:inputType="none" -->
+<!-- 		android:scrollHorizontally="true" -->
+<!--         android:hint="@string/compose_hint" -->
+<!--         android:imeOptions="actionSend"/> -->
     
     <LinearLayout
         android:id="@+id/compose_button_bar"
@@ -53,9 +53,23 @@
         	android:layout_height="wrap_content"
         	android:text="@string/file_reply"
         	android:layout_weight="1"
-        	android:onClick="goToConversation" />   
+        	android:onClick="goToConversation" /> 
+        	
+    	<Button 
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@string/text_reply"
+        	android:layout_weight="1"
+        	android:onClick="goToConversation" /> 
+        	  
         	
 	</LinearLayout>
+	
+    <Button 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="@string/go" /> 
     
 </LinearLayout>
 

@@ -11,5 +11,6 @@
     <string name="image_reply">IMAGE</string>
     <string name="pictogram_reply">=)</string>
     <string name="file_reply">FILE</string>
+    <string name="text_reply">TEXT</string>
 
 </resources>
