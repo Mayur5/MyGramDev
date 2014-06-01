@@ -29,7 +29,7 @@ public class InboxViewAdapter extends ArrayAdapter<Conversation> {
 		TextView textView = (TextView)rowView.findViewById(R.id.conversation_snippet);
 		ImageView imageView = (ImageView)rowView.findViewById(R.id.profile_pic);
 		textView.setText(inbox.getConversation(position).getSnippet());
-		imageView.setImageResource(R.drawable.from);
+		imageView.setImageResource(inbox.getConversation(position).getCorrespondent().getProfilePic());
 		
 		return rowView;
 		

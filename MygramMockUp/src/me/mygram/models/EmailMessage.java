@@ -21,6 +21,7 @@ public abstract class EmailMessage extends Message implements Serializable{
 	private MessageStatus Status;
 	private String attachmentType;
 	private File attachment;
+	private Contact correspondent;
 	
 	public EmailMessage() {
 		super();
@@ -102,6 +103,37 @@ public abstract class EmailMessage extends Message implements Serializable{
 
 	public Boolean hasAttachment() {
 		return null;
+	}
+
+	@Override
+	public boolean isEmail() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isSMS() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isNotification() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Contact getCorrespondent() {
+		// TODO Auto-generated method stub
+		return correspondent;
+	}
+
+	@Override
+	public Message setCorrespondent(Contact contact) {
+		// TODO Auto-generated method stub
+		this.correspondent = contact;
+		return this;
 	}
 
 }

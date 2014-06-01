@@ -4,6 +4,8 @@ import java.util.Date;
 
 public interface GenericMessage {
 	
+	public GenericContact getCorrespondent();
+	
 	public String toString();
 
 	public Object getSender();
@@ -29,5 +31,7 @@ public interface GenericMessage {
 	public boolean isSMS();
 	
 	public boolean isNotification();
+
+	public Message setCorrespondent(Contact contact);
 	
 }

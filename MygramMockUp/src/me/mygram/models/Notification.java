@@ -12,25 +12,4 @@ public class Notification extends NotificationMessage implements Serializable{
 	public Notification(String body) {
 		this.setBody(body);
 	}
-
-	@Override
-	public boolean isEmail() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isSMS() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isNotification() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	
-
 }

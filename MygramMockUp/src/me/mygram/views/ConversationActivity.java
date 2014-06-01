@@ -1,11 +1,11 @@
 package me.mygram.views;
 
+import me.mygram.controllers.adapters.ConversationViewAdapter;
 import me.mygram.models.Conversation;
 
 import com.example.mygrammockup.R;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -21,20 +21,18 @@ public class ConversationActivity extends Activity {
 		//Get the intent
 		Intent intent = getIntent();
 		
-		//Check if intent is carrying a conversation, if so TODO: inflate listView with conversation
+		//Check if intent is carrying a conversation, if so inflate listView with conversation
 		if(intent.hasExtra("selectedConversation")) {
-			Conversation conversation = (Conversation) intent.getSerializableExtra("selectedConversation");
+			//Populate conversations
+			Conversation conversation = (Conversation) intent.getSerializableExtra("selectedConversation");			
+			final ListView conversationView = (ListView)findViewById(R.id.conversationView);			
+			final ConversationViewAdapter adapter = new ConversationViewAdapter(this, R.layout.conversation_item, conversation);
+			conversationView.setAdapter(adapter);
+			
+			//Conversation item Clicklistener
+			
 			Toast toast = Toast.makeText(this, conversation.getSnippet(), Toast.LENGTH_SHORT);
 			toast.show();	
-			
-			ListView listView = (ListView)findViewById(R.id.conversationView);			
-			inflate(this, listView, conversation);
 		}
 	}
-
-	private void inflate(Context context, ListView listView, Conversation conversation) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

@@ -3,6 +3,7 @@ package me.mygram.controllers.services;
 import java.util.ArrayList;
 
 import android.content.Context;
+import me.mygram.models.Contact;
 import me.mygram.models.Conversation;
 import me.mygram.models.Mail;
 import me.mygram.models.Message;
@@ -27,62 +28,60 @@ public class MailService implements GenericMailService{
 	}
 
 	private ArrayList<Conversation> dummyConversations() {
+		final int pic1=0x7f020003;
+        final int pic2=0x7f020004;
+        final int pic3=0x7f020005;
+        final int pic4=0x7f020006;
+        final int pic5=0x7f020007;
+        final int pic6=0x7f020008;
+        final int pic7=0x7f020009;
+		
+		Contact self = new Contact("Harini", "Appaiah").setProfilePic(pic7);;
 		ArrayList<Conversation> conversations = new ArrayList<Conversation>();
+		
 		Conversation a = new Conversation();
-		a.appendMessage(new Mail("Oi! Call when you can"));
-		a.appendMessage(new SMS("9863647272"));
-		a.appendMessage(new SMS("Thanks - that was great fun..."));
-		a.appendMessage(new Mail("Call when you're free pls - it's urgent."));		
-		a.appendMessage(new SMS("Thank you"));
-		a.appendMessage(new Mail("arumugam@seventyfive.com"));		
-		a.appendMessage(new Mail("lol"));
-		a.appendMessage(new Mail("Bring some salt also."));
-		a.appendMessage(new Mail("You have won 10,000 rupees in our..."));
-		a.appendMessage(new Mail("=)"));
-		a.appendMessage(new Mail("Hey what's srivats's number?"));
+		Contact contactA = new Contact("Lokesh", "Jagannathan").setProfilePic(pic1);
+		a.setCorrespondent(contactA);
+		a.appendMessage(new Mail("Oi! Call when you can").setCorrespondent(contactA));
+		a.appendMessage(new SMS("9863647272").setCorrespondent(contactA));
+		a.appendMessage(new SMS("Thanks - that was great fun...").setCorrespondent(self));
+		a.appendMessage(new Mail("Call when you're free pls - it's urgent.").setCorrespondent(contactA));		
+		a.appendMessage(new SMS("Thank you").setCorrespondent(self));
+		a.appendMessage(new Mail("arumugam@seventyfive.com").setCorrespondent(self));		
+		a.appendMessage(new Mail("lol").setCorrespondent(contactA));
+		a.appendMessage(new Mail("Bring some salt also.").setCorrespondent(contactA));
+		a.appendMessage(new Mail("=)").setCorrespondent(self));
+		a.appendMessage(new Mail("Hey what's srivats's number?").setCorrespondent(contactA));
 		
 		Conversation b = new Conversation();
-		b.appendMessage(new Mail("Oi! Call when you can"));
-		b.appendMessage(new SMS("9863647272"));
-		b.appendMessage(new SMS("Thanks - that was great fun..."));
-		b.appendMessage(new Mail("Call when you're free pls - it's urgent."));		
-		b.appendMessage(new SMS("Thank you"));
-		b.appendMessage(new Mail("arumugam@seventyfive.com"));		
-		b.appendMessage(new Mail("lol"));
+		Contact contactB = new Contact("Kumari", "Bomman").setProfilePic(pic4);
+		b.setCorrespondent(contactB);
+		
+		b.appendMessage(new Mail("Oi! Call when you can").setCorrespondent(contactB));
 		
 		Conversation c = new Conversation();
-		c.appendMessage(new Mail("Oi! Call when you can"));
-		c.appendMessage(new SMS("9863647272"));
-		c.appendMessage(new SMS("Thanks - that was great fun..."));
-		c.appendMessage(new Mail("Call when you're free pls - it's urgent."));		
-		c.appendMessage(new SMS("Thank you"));
-		c.appendMessage(new Mail("arumugam@seventyfive.com"));		
-		c.appendMessage(new Mail("lol"));
-		c.appendMessage(new Mail("Bring some salt also."));
-		c.appendMessage(new Mail("You have won 10,000 rupees in our..."));
-		c.appendMessage(new Mail("=)"));
+		Contact contactC = new Contact("Muthu", "B").setProfilePic(pic2);
+		c.setCorrespondent(contactC);
+		c.appendMessage(new Mail("Bring some salt also.").setCorrespondent(contactC));
+		c.appendMessage(new Mail("You have won 10,000 rupees in our...").setCorrespondent(self));
+		c.appendMessage(new Mail("=)").setCorrespondent(contactC));
 		
 		Conversation d = new Conversation();
-		d.appendMessage(new Mail("Oi! Call when you can"));
-		d.appendMessage(new SMS("9863647272"));
-		d.appendMessage(new SMS("Thanks - that was great fun..."));
-		d.appendMessage(new Mail("Call when you're free pls - it's urgent."));		
-		d.appendMessage(new SMS("Thank you"));
+		Contact contactD = new Contact("Jaggu", "Abraham").setProfilePic(pic3);
+		d.setCorrespondent(contactD);
+		d.appendMessage(new Mail("Oi! Call when you can").setCorrespondent(contactD));
 		
 		Conversation e = new Conversation();
-		e.appendMessage(new Notification("Subscription Offer"));
-		e.appendMessage(new Mail(" "));
-		e.appendMessage(new Notification("You are now subscribed to BabaJob.in"));
+		Contact contactE = new Contact("SPRINGBOARD", "SERVICE").setProfilePic(pic5);
+		e.setCorrespondent(contactE);
+		e.appendMessage(new Notification("Subscription Offer: Click here to subscribe to BabaJob.in").setCorrespondent(contactE));
+		e.appendMessage(new Mail("Congratulations! You are now subscribed to Babajobs.in.").setCorrespondent(contactE));
+		e.appendMessage(new Notification("Job Offer: Driver wanted in Sirsi for retired Army Major - click here to apply").setCorrespondent(contactE));
 	
 		Conversation f = new Conversation();
-		f.appendMessage(new Mail("Oi! Call when you can"));
-		f.appendMessage(new SMS("9863647272"));
-		f.appendMessage(new SMS("Thanks - that was great fun..."));
-		f.appendMessage(new Mail("Call when you're free pls - it's urgent."));		
-		f.appendMessage(new SMS("Thank you"));
-	
-		Conversation g = new Conversation();
-		g.appendMessage(new Mail("Oi! Call when you can"));
+		Contact contactF = new Contact("Priya", "Sarin").setProfilePic(pic6);
+		f.setCorrespondent(contactF);
+		f.appendMessage(new Mail("Where should I come in Indiranagar?").setCorrespondent(contactF));
 		
 		conversations.add(a);
 		conversations.add(b);
@@ -90,7 +89,6 @@ public class MailService implements GenericMailService{
 		conversations.add(d);
 		conversations.add(e);
 		conversations.add(f);
-		conversations.add(g);
 		
 		return conversations;
 	}
