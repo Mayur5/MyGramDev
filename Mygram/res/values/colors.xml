@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+   	<color name="selected_color">#e74c3c</color>
+   	<color name="default_color">#ffffff</color> 
+   	<color name="grey">#efefefef</color>
+   	<color name="mygram_orange">#e74c3c</color>
+
+</resources>

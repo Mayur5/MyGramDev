@@ -1,0 +1,88 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="me.mygram.views.MainActivity"
+    tools:ignore="MergeRootFrame">
+    
+    <ImageView 
+        android:id="@+id/conversation_correspondent_profile_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="left"
+        android:contentDescription="@string/go" />    
+
+    <ListView 
+	    android:id="@+id/conversationView"
+    	android:layout_width="match_parent"
+    	android:layout_height="0dp"
+    	android:layout_weight="1" /> 
+    
+<!--     <EditText  -->
+<!--         android:id="@+id/compose_edit_text" -->
+<!--         android:layout_width="fill_parent" -->
+<!-- 		android:layout_height="wrap_content" -->
+<!-- 		android:inputType="none" -->
+<!-- 		android:scrollHorizontally="true" -->
+<!--         android:hint="@string/compose_hint" -->
+<!--         android:imeOptions="actionSend"/> -->
+    
+    <LinearLayout
+        android:id="@+id/compose_button_bar"
+        android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+        android:weightSum="4" >
+        
+        <Button 
+	        android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+        	android:text="@string/image_reply"
+        	android:layout_weight="1"
+        	android:background="@drawable/orange_button"
+        	style="@style/button_text"
+        	android:onClick="goToConversation" />   
+        
+    	<Button 
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@string/pictogram_reply"
+        	android:layout_weight="1"
+        	android:background="@drawable/orange_button"
+        	style="@style/button_text"
+        	android:onClick="goToConversation" />   
+        
+    	<Button 
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@string/file_reply"
+        	android:layout_weight="1"
+        	android:background="@drawable/orange_button"
+        	style="@style/button_text"
+        	android:onClick="goToConversation" /> 
+        	
+    	<Button 
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@string/text_reply"
+        	android:layout_weight="1"
+        	android:background="@drawable/orange_button"
+        	style="@style/button_text"
+        	android:onClick="goToConversation" /> 
+        	  
+        	
+	</LinearLayout>
+	
+    <Button 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:background="@drawable/orange_button"
+        style="@style/button_text"
+        android:text="@string/go" /> 
+    
+</LinearLayout>
+
