@@ -33,6 +33,7 @@ public class ConversationViewAdapter extends ArrayAdapter<Message> {
 		TextView textView = (TextView)rowView.findViewById(R.id.message_text);
 		ImageView imageView = (ImageView)rowView.findViewById(R.id.image_attachment);
 		Message m = conversation.getMessageAt(position);
+		
 		textView.setText(m.toString());
 		if (m.isEmail()) {
 			imageView.setImageResource(((Mail) m).getAttachment());

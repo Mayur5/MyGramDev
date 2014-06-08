@@ -2,14 +2,13 @@ package me.mygram.views;
 
 import me.mygram.controllers.adapters.ConversationViewAdapter;
 import me.mygram.models.Conversation;
-
 import me.mygram.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class ConversationActivity extends Activity {
 
@@ -25,9 +24,11 @@ public class ConversationActivity extends Activity {
 		if(intent.hasExtra("selectedConversation")) {
 			Conversation conversation = (Conversation) intent.getSerializableExtra("selectedConversation");	
 			
-			//Set correspondent Pic
+			//Set correspondent Pic and Name
 			ImageView profilePic = (ImageView)findViewById(R.id.conversation_correspondent_profile_pic);
 			profilePic.setImageResource(conversation.getCorrespondent().getProfilePic());
+			TextView correspondentNameTextView = (TextView)findViewById(R.id.conversation_correspondent_name);
+			correspondentNameTextView.setText(conversation.getCorrespondent().getFullName());
 			
 			//Populate conversations
 			final ListView conversationView = (ListView)findViewById(R.id.conversationView);			

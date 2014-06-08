@@ -27,17 +27,17 @@ public class MailService implements GenericMailService{
 	}
 
 	private ArrayList<Conversation> dummyConversations() {
-		final int from=0x7f02005a;
-        final int jamesh_bond=0x7f02005c;
-        final int love_smiley=0x7f02005d;
-        final int notification1=0x7f02005e;
-        final int notification2=0x7f02005f;
-        final int notification3=0x7f020060;
-        final int pic1=0x7f020062;
-        final int pic4=0x7f020065;
-        final int pic5=0x7f020066;
-        final int pic6=0x7f020067;
-        final int thumbs_up=0x7f02006a;
+		final int from=0x7f020003;
+        final int jamesh_bond=0x7f020006;
+        final int love_smiley=0x7f020007;
+        final int notification1=0x7f020008;
+        final int notification2=0x7f020009;
+        final int notification3=0x7f02000a;
+        final int pic1=0x7f02000c;
+        final int pic4=0x7f02000f;
+        final int pic5=0x7f020010;
+        final int pic6=0x7f020011;
+        final int thumbs_up=0x7f020014;
 		
 		Contact self = new Contact("Harini", "Appaiah").setProfilePic(from);;
 		ArrayList<Conversation> conversations = new ArrayList<Conversation>();
