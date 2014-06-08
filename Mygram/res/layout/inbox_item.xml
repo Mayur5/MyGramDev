@@ -56,5 +56,14 @@
         android:contentDescription="@string/hello_world"
         android:gravity="right"
         android:src="@drawable/sms_reverse" />
+    
+    <ImageView 
+        android:id="@+id/attachment_type"
+        android:layout_width="30dp"
+        android:layout_height="26dp"
+        android:layout_toLeftOf="@id/message_type"
+        android:layout_marginRight="3dp"
+        android:gravity="right"
+        android:contentDescription="@string/hello_world" />
 
 </RelativeLayout>

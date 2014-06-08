@@ -39,8 +39,7 @@
             android:layout_height="40dp"
             android:layout_toRightOf="@id/conversation_correspondent_profile_pic"
             android:layout_marginLeft="3dp"
-            android:layout_marginTop="10dp"
-            android:text="Name comes here"/>        
+            android:layout_marginTop="10dp" />         
         <ImageView
             android:id="@+id/title_bar_hamburger"
             android:layout_width="20dp"

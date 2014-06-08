@@ -88,7 +88,7 @@ public abstract class EmailMessage extends Message implements Serializable{
 		return attachmentType;
 	}
 
-	public Message setAttachmentType(String attachmentType) {
+	public EmailMessage setAttachmentType(String attachmentType) {
 		this.attachmentType = attachmentType;
 		return this;
 	}
@@ -97,7 +97,7 @@ public abstract class EmailMessage extends Message implements Serializable{
 		return attachment;
 	}
 
-	public Message setAttachment(int attachment) {
+	public EmailMessage setAttachment(int attachment) {
 		this.attachment = attachment;
 		return this;
 	}

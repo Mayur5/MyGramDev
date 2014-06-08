@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import me.mygram.R;
 import me.mygram.models.Conversation;
 import me.mygram.models.Inbox;
+import me.mygram.models.Mail;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,7 +43,21 @@ public class InboxViewAdapter extends ArrayAdapter<Conversation> {
 		timeStampTextView.setText(df.format(c.getLastMessage().receivedTimeStamp()));
 		
 		if(c.getLastMessage().isEmail()) {
+			Mail e = (Mail)c.getLastMessage();
 			messageTypeImageView.setImageResource(R.drawable.email_temp);
+			if(e.hasAttachment()) {
+				String attachmentType = e.getAttachmentType();
+				ImageView attachmentTypeView = (ImageView)rowView.findViewById(R.id.attachment_type);
+				if(attachmentType.equalsIgnoreCase("image")) {
+					attachmentTypeView.setImageResource(R.drawable.photo);
+				} else if (attachmentType.equalsIgnoreCase("audio")) {
+					attachmentTypeView.setImageResource(R.drawable.audio);
+				} else if (attachmentType.equalsIgnoreCase("video")) {
+					attachmentTypeView.setImageResource(R.drawable.video);
+				} else if (attachmentType.equalsIgnoreCase("file")) {
+					attachmentTypeView.setImageResource(R.drawable.file);
+				}
+			}
 		} else if (c.getLastMessage().isNotification()) {
 			messageTypeImageView.setImageResource(R.drawable.ic_launcher);
 		} else if (c.getLastMessage().isSMS()) {
