@@ -1,8 +1,6 @@
 package me.mygram.models;
 
 import java.io.Serializable;
-import java.util.Date;
-
 import android.provider.ContactsContract.CommonDataKinds.Email;
 
 public abstract class EmailMessage extends Message implements Serializable{
@@ -15,8 +13,6 @@ public abstract class EmailMessage extends Message implements Serializable{
 	private Email receiver;
 	private String subject;
 	protected String body;
-	private Date sentTimeStamp;
-	private Date receivedTimeStamp;
 	private MessageStatus Status;
 	private String attachmentType;
 	private int attachment = 0;
@@ -58,22 +54,6 @@ public abstract class EmailMessage extends Message implements Serializable{
 	
 	public void setBody(String body) {
 		this.body = body;
-	}
-
-	public Date getSentTimeStamp() {
-		return sentTimeStamp;
-	}
-
-	public void setSentTimeStamp(Date sentTimeStamp) {
-		this.sentTimeStamp = sentTimeStamp;
-	}
-
-	public Date getReceivedTimeStamp() {
-		return receivedTimeStamp;
-	}
-
-	public void setReceivedTimeStamp(Date receivedTimeStamp) {
-		this.receivedTimeStamp = receivedTimeStamp;
 	}
 
 	public MessageStatus getStatus() {

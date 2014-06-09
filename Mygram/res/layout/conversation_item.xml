@@ -15,7 +15,7 @@
         android:layout_marginRight="5dp"
         android:textSize="16sp" >
     </TextView>
-    
+           
     <ImageView 
         android:id="@+id/image_attachment"
         android:layout_width="wrap_content"
@@ -26,5 +26,13 @@
         android:scaleType="fitXY"
         android:contentDescription="@string/go" >
     </ImageView>
+    
+    <TextView 
+        android:id="@+id/conversation_message_time_stamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/image_attachment"
+        android:textSize="12sp" />
  
 </RelativeLayout>

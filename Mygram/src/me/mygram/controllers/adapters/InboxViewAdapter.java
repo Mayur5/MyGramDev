@@ -35,7 +35,7 @@ public class InboxViewAdapter extends ArrayAdapter<Conversation> {
 		TextView correspondentNameTextView = (TextView)rowView.findViewById(R.id.correspondent_name_inbox);
 		ImageView imageView = (ImageView)rowView.findViewById(R.id.profile_pic);
 		ImageView messageTypeImageView = (ImageView)rowView.findViewById(R.id.message_type);
-		TextView timeStampTextView = (TextView)rowView.findViewById(R.id.message_time_stamp);
+		TextView timeStampTextView = (TextView)rowView.findViewById(R.id.inbox_message_time_stamp);
 		
 		snippetTextView.setText(c.getSnippet());
 		correspondentNameTextView.setText(c.getCorrespondent().getFullName());

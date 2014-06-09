@@ -47,7 +47,7 @@ public abstract class Message implements GenericMessage{
 	@Override
 	public Date sentTimeStamp() {
 		// TODO Auto-generated method stub
-		return null;
+		return new Date();
 	}
 
 	@Override

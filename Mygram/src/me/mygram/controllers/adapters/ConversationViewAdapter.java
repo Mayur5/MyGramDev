@@ -1,5 +1,7 @@
 package me.mygram.controllers.adapters;
 
+import java.text.DateFormat;
+
 import me.mygram.R;
 import me.mygram.models.Contact;
 import me.mygram.models.Conversation;
@@ -27,27 +29,40 @@ public class ConversationViewAdapter extends ArrayAdapter<Message> {
 	}
 	
 	public View getView(int position, View convertView, ViewGroup parent) {
+		DateFormat df = DateFormat.getDateInstance();
+		
+		//Initialize view objects
 		Contact correspondent = (Contact) conversation.getMessageAt(position).getCorrespondent();
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View rowView = inflater.inflate(R.layout.conversation_item, parent, false);
 		TextView textView = (TextView)rowView.findViewById(R.id.message_text);
 		ImageView imageView = (ImageView)rowView.findViewById(R.id.image_attachment);
+		TextView timeStampTextView = (TextView)rowView.findViewById(R.id.conversation_message_time_stamp);
 		Message m = conversation.getMessageAt(position);
 		
+		//Set Message text, time stamp
 		textView.setText(m.toString());
+		timeStampTextView.setText(df.format(m.receivedTimeStamp()));
+		
+		//Handle attachments - two different cases for email and notifications, TODO
 		if (m.isEmail()) {
 			imageView.setImageResource(((Mail) m).getAttachment());
 		}
-		
 		if (m.isNotification()) {
 			imageView.setImageResource(((Notification) m).getAttachment());
 		}
 		
+		//Align right if sender is self
 		if (correspondent.isSelf()) {
 			RelativeLayout.LayoutParams textViewParams = (RelativeLayout.LayoutParams)textView.getLayoutParams();
 			textViewParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, 0);
 			textViewParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 			textView.setLayoutParams(textViewParams);
+			
+			RelativeLayout.LayoutParams timeStampTextViewParams = (RelativeLayout.LayoutParams)timeStampTextView.getLayoutParams();
+			timeStampTextViewParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, 0);
+			timeStampTextViewParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+			timeStampTextView.setLayoutParams(textViewParams);
 			
 			RelativeLayout.LayoutParams imageViewParams = (RelativeLayout.LayoutParams)imageView.getLayoutParams();
 			imageViewParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, 0);
