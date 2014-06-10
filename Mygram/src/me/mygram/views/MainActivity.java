@@ -74,6 +74,7 @@ public class MainActivity extends Activity {
 	protected static void swipeRight(Context context) {
 		// TODO Auto-generated method stub
 		Intent intent = new Intent(context, SpringboardActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 		context.startActivity(intent);
 	}
 

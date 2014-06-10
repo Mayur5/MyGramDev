@@ -38,8 +38,19 @@ public class Conversation implements Serializable {
 		if(messages.get(messages.size() - 1).isEmail()) {
 			Mail m = (Mail)messages.get(messages.size() - 1);
 			if(m.hasAttachment()) {
-				snippet = "Has sent you an image";
-				return snippet;
+				if(m.getAttachmentType().equalsIgnoreCase("image")) {
+					snippet = "Has sent you an image";
+					return snippet;
+				} else if (m.getAttachmentType().equalsIgnoreCase("file")) {
+					snippet = "Has sent you a file";
+					return snippet;
+				} else if (m.getAttachmentType().equalsIgnoreCase("video")) {
+					snippet = "Has sent you a video";
+					return snippet;
+				} else if (m.getAttachmentType().equalsIgnoreCase("audio")) {
+					snippet = "Has sent you an audio file";
+					return snippet;
+				}
 			}
 		}
 		snippet = messages.get(messages.size() - 1).toString();

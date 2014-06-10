@@ -37,13 +37,55 @@
         
     </RelativeLayout>  
     
-    <ListView 
-        android:id="@+id/springboard_list_view"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >        
-        
-    </ListView>
     
+            
+    <LinearLayout 
+        android:id="@+id/springboard_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:weightSum="3"
+        android:orientation="vertical"
+        android:baselineAligned="false" >
+       
+        <RelativeLayout 
+	         android:id="@+id/springboard_featured_vendor"
+	         android:layout_width="fill_parent"
+	         android:layout_height="wrap_content"
+	         android:layout_weight="2" >
+	         
+            <ImageView
+                android:id="@+id/springboard_featured_vendor_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/sms_reverse"
+                android:contentDescription="@string/hello_world" />
+	         
+            <TextView 
+                android:id="@+id/springboard_featured_vendor_description"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_toRightOf="@id/springboard_featured_vendor_icon"
+                android:gravity="center"
+                android:text="FEATURED VENDOR"/>
+        
+  	  	</RelativeLayout>
+  	  	
+  	  	<GridView 
+  	  	    android:id="@+id/springboard_vendor_grid"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+  	  	    android:numColumns="auto_fit"
+		    android:gravity="center"
+		    android:columnWidth="50dp"
+		    android:stretchMode="columnWidth"
+  	  	    android:layout_weight="1"
+  	  	    android:background="@color/mygram_orange" />
+    
+    </LinearLayout>
+	    
 	<Button 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

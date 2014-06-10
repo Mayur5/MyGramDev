@@ -9,11 +9,20 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.GestureDetector.SimpleOnGestureListener;
-import android.widget.ListView;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
+import android.widget.TextView;
 
 public class SpringboardActivity extends Activity {
 	private GestureDetector gestureDetector;
 	private View.OnTouchListener gestureListener;	
+	
+	static final String[] numbers = new String[] { 
+		"A", "B", "C", "D", "E",
+		"F", "G", "H", "I", "J",
+		"K", "L", "M", "N", "O",
+		"P", "Q", "R", "S", "T",
+		"U", "V", "W", "X", "Y", "Z"};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +30,12 @@ public class SpringboardActivity extends Activity {
 		setContentView(R.layout.activity_springboard);
 		
 		//Instantiate objects
-		ListView springboardListView = (ListView)findViewById(R.id.springboard_list_view);
+		TextView featuredVendorDescriptionView = (TextView)findViewById(R.id.springboard_featured_vendor_description);
+		GridView vendorGridView = (GridView)findViewById(R.id.springboard_vendor_grid);
+		
+		//Dummy Grid inflation
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, numbers);
+		vendorGridView.setAdapter(adapter);
 		
 		//Set swipeListener
 		gestureDetector = new GestureDetector(this, new SwipeDetector());
@@ -31,18 +45,21 @@ public class SpringboardActivity extends Activity {
 				return gestureDetector.onTouchEvent(event);
 			}
 		};		
-		springboardListView.setOnTouchListener(gestureListener);
+		featuredVendorDescriptionView.setOnTouchListener(gestureListener);
+		vendorGridView.setOnTouchListener(gestureListener);
 	}
 	
 	protected static void swipeRight(Context context) {
 		// TODO Auto-generated method stub
 		Intent intent = new Intent(context, ConversationActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 		context.startActivity(intent);
 	}
 
 	protected static void swipeLeft(Context context) {
 		// TODO Auto-generated method stub
 		Intent intent = new Intent(context, MainActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 		context.startActivity(intent);
 	}
 	
@@ -61,7 +78,7 @@ public class SpringboardActivity extends Activity {
 		        	SpringboardActivity.swipeLeft(SpringboardActivity.this);
 		        }  else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
 		        	SpringboardActivity.swipeRight(SpringboardActivity.this);
-		        }
+		        } 
 		    } catch (Exception e) {
 		        // nothing
 		    }
