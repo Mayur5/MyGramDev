@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context="me.mygram.views.SpringboardActivity"
+    tools:ignore="MergeRootFrame" >
+    
+    <RelativeLayout
+        android:id="@+id/title_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:layout_gravity="top"
+        android:background="#ffffff">
+        
+        <ImageView
+            android:id="@+id/title_bar_logo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/ic_launcher"
+            android:contentDescription="@string/hello_world" />
+        
+        <ImageView
+            android:id="@+id/title_bar_hamburger"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/hamburger_icon_temp"
+            android:contentDescription="@string/hello_world" />
+        
+    </RelativeLayout>  
+    
+    <ListView 
+        android:id="@+id/springboard_list_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >        
+        
+    </ListView>
+    
+	<Button 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/orange_button"
+        android:text="@string/go"
+        style="@style/button_text"
+        android:onClick="goToInboxView" />    
+        
+</RelativeLayout>

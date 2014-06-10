@@ -1,7 +1,5 @@
 package me.mygram.views;
 
-import me.mygram.controllers.adapters.ConversationViewAdapter;
-import me.mygram.models.Conversation;
 import me.mygram.R;
 import android.app.Activity;
 import android.content.Context;
@@ -11,41 +9,19 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.GestureDetector.SimpleOnGestureListener;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
-public class ConversationActivity extends Activity {
+public class SpringboardActivity extends Activity {
 	private GestureDetector gestureDetector;
 	private View.OnTouchListener gestureListener;	
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_conversation);
-		
-		//Get the intent
-		Intent intent = getIntent();
+		setContentView(R.layout.activity_springboard);
 		
 		//Instantiate objects
-		final ListView conversationView = (ListView)findViewById(R.id.conversationView);	
-		
-		//Check if intent is carrying a conversation, if so inflate listView with conversation
-		if(intent.hasExtra("selectedConversation")) {
-			Conversation conversation = (Conversation) intent.getSerializableExtra("selectedConversation");	
-			
-			//Set correspondent Pic and Name
-			ImageView profilePic = (ImageView)findViewById(R.id.conversation_correspondent_profile_pic);
-			profilePic.setImageResource(conversation.getCorrespondent().getProfilePic());
-			TextView correspondentNameTextView = (TextView)findViewById(R.id.conversation_correspondent_name);
-			correspondentNameTextView.setText(conversation.getCorrespondent().getFullName());
-			
-			//Populate conversations	
-			final ConversationViewAdapter adapter = new ConversationViewAdapter(this, R.layout.conversation_item, conversation);
-			conversationView.setAdapter(adapter);
-		}
-		
-		//Conversation item Clicklistener
+		ListView springboardListView = (ListView)findViewById(R.id.springboard_list_view);
 		
 		//Set swipeListener
 		gestureDetector = new GestureDetector(this, new SwipeDetector());
@@ -54,19 +30,19 @@ public class ConversationActivity extends Activity {
 			public boolean onTouch(View v, MotionEvent event) {
 				return gestureDetector.onTouchEvent(event);
 			}
-		};
-		conversationView.setOnTouchListener(gestureListener);
+		};		
+		springboardListView.setOnTouchListener(gestureListener);
 	}
 	
 	protected static void swipeRight(Context context) {
 		// TODO Auto-generated method stub
-		Intent intent = new Intent(context, MainActivity.class);
+		Intent intent = new Intent(context, ConversationActivity.class);
 		context.startActivity(intent);
 	}
 
 	protected static void swipeLeft(Context context) {
 		// TODO Auto-generated method stub
-		Intent intent = new Intent(context, SpringboardActivity.class);
+		Intent intent = new Intent(context, MainActivity.class);
 		context.startActivity(intent);
 	}
 	
@@ -82,9 +58,9 @@ public class ConversationActivity extends Activity {
 		            return false;
 		        // right to left swipe
 		        if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-		        	ConversationActivity.swipeLeft(ConversationActivity.this);
+		        	SpringboardActivity.swipeLeft(SpringboardActivity.this);
 		        }  else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-		        	ConversationActivity.swipeRight(ConversationActivity.this);
+		        	SpringboardActivity.swipeRight(SpringboardActivity.this);
 		        }
 		    } catch (Exception e) {
 		        // nothing

@@ -26,6 +26,10 @@
             android:name="me.mygram.views.ConversationActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="me.mygram.views.SpringboardActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>
