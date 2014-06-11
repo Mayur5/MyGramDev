@@ -50,26 +50,50 @@
         <RelativeLayout 
 	         android:id="@+id/springboard_featured_vendor"
 	         android:layout_width="fill_parent"
-	         android:layout_height="wrap_content"
+	         android:layout_height="fill_parent"
 	         android:layout_weight="2" >
 	         
             <ImageView
                 android:id="@+id/springboard_featured_vendor_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:src="@drawable/sms_reverse"
                 android:contentDescription="@string/hello_world" />
-	         
+            
             <TextView 
+                android:id="@+id/springboard_featured_vendor_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/springboard_featured_vendor_icon"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="center"
+                android:textSize="12sp"
+                android:text="vendor name" />
+
+            <TextView
                 android:id="@+id/springboard_featured_vendor_description"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_toRightOf="@id/springboard_featured_vendor_icon"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:gravity="center"
-                android:text="FEATURED VENDOR"/>
+                android:layout_toRightOf="@+id/springboard_featured_vendor_name"
+                android:text="FEATURED VENDOR" />
+            
+            <Button 
+                android:id="@+id/featured_vendor_registration_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/springboard_featured_vendor_description"
+                android:layout_toRightOf="@id/springboard_featured_vendor_icon"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="50dp"
+                android:background="#ff5757"
+                android:text="Easy Registration" />
         
   	  	</RelativeLayout>
   	  	
@@ -79,10 +103,10 @@
 		    android:layout_height="fill_parent"
   	  	    android:numColumns="auto_fit"
 		    android:gravity="center"
-		    android:columnWidth="50dp"
+		    android:columnWidth="100dp"
 		    android:stretchMode="columnWidth"
   	  	    android:layout_weight="1"
-  	  	    android:background="@color/mygram_orange" />
+  	  	    android:background="#212121" />
     
     </LinearLayout>
 	    

@@ -1,6 +1,10 @@
 package me.mygram.views;
 
 import me.mygram.R;
+import me.mygram.controllers.adapters.SpringboardRosterViewAdapter;
+import me.mygram.controllers.factories.SpringboardServiceFactory;
+import me.mygram.controllers.services.SpringboardService;
+import me.mygram.models.Roster;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -9,20 +13,17 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.GestureDetector.SimpleOnGestureListener;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class SpringboardActivity extends Activity {
 	private GestureDetector gestureDetector;
 	private View.OnTouchListener gestureListener;	
-	
-	static final String[] numbers = new String[] { 
-		"A", "B", "C", "D", "E",
-		"F", "G", "H", "I", "J",
-		"K", "L", "M", "N", "O",
-		"P", "Q", "R", "S", "T",
-		"U", "V", "W", "X", "Y", "Z"};
+	private SpringboardService springboardService;
+	private Roster roster = new Roster();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +31,35 @@ public class SpringboardActivity extends Activity {
 		setContentView(R.layout.activity_springboard);
 		
 		//Instantiate objects
+		springboardService = SpringboardServiceFactory.getSpringboardService(this);
+		roster.setSpringboardService(springboardService);
 		TextView featuredVendorDescriptionView = (TextView)findViewById(R.id.springboard_featured_vendor_description);
 		GridView vendorGridView = (GridView)findViewById(R.id.springboard_vendor_grid);
 		
 		//Dummy Grid inflation
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, numbers);
+		roster.sync();
+		SpringboardRosterViewAdapter adapter = new SpringboardRosterViewAdapter(this, roster);
 		vendorGridView.setAdapter(adapter);
+		
+		//Featured Vendor inflation
+		ImageView featuredVendorIcon = (ImageView)findViewById(R.id.springboard_featured_vendor_icon);
+		TextView featuredVendorName = (TextView)findViewById(R.id.springboard_featured_vendor_name);
+		featuredVendorIcon.setImageResource(roster.getFirstVendor().getIcon());
+		featuredVendorName.setText(roster.getFirstVendor().getName());
+		featuredVendorDescriptionView.setText(roster.getFirstVendor().getDescription());
+		
+		//Set onClickListener
+		vendorGridView.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+				ImageView featuredVendorIcon = (ImageView)findViewById(R.id.springboard_featured_vendor_icon);
+				TextView featuredVendorName = (TextView)findViewById(R.id.springboard_featured_vendor_name);
+				TextView featuredVendorDescriptionView = (TextView)findViewById(R.id.springboard_featured_vendor_description);
+				
+				featuredVendorIcon.setImageResource(roster.getVendorAt(position).getIcon());
+				featuredVendorName.setText(roster.getVendorAt(position).getName());
+				featuredVendorDescriptionView.setText(roster.getVendorAt(position).getDescription());
+			}
+		});
 		
 		//Set swipeListener
 		gestureDetector = new GestureDetector(this, new SwipeDetector());
@@ -51,9 +75,7 @@ public class SpringboardActivity extends Activity {
 	
 	protected static void swipeRight(Context context) {
 		// TODO Auto-generated method stub
-		Intent intent = new Intent(context, ConversationActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-		context.startActivity(intent);
+		
 	}
 
 	protected static void swipeLeft(Context context) {

@@ -67,9 +67,7 @@ public class ConversationActivity extends Activity {
 
 	protected static void swipeLeft(Context context) {
 		// TODO Auto-generated method stub
-		Intent intent = new Intent(context, SpringboardActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-		context.startActivity(intent);
+		
 	}
 	
 	private final class SwipeDetector extends SimpleOnGestureListener {
