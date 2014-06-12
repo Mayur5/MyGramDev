@@ -109,14 +109,6 @@
   	  	    android:background="#212121" />
     
     </LinearLayout>
-	    
-	<Button 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/orange_button"
-        android:text="@string/go"
-        style="@style/button_text"
-        android:onClick="goToInboxView" />    
+ 
         
 </RelativeLayout>

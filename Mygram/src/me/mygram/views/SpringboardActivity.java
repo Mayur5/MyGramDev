@@ -62,15 +62,15 @@ public class SpringboardActivity extends Activity {
 		});
 		
 		//Set swipeListener
-		gestureDetector = new GestureDetector(this, new SwipeDetector());
-		gestureListener = new View.OnTouchListener() {	
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				return gestureDetector.onTouchEvent(event);
-			}
-		};		
-		featuredVendorDescriptionView.setOnTouchListener(gestureListener);
-		vendorGridView.setOnTouchListener(gestureListener);
+//		gestureDetector = new GestureDetector(this, new SwipeDetector());
+//		gestureListener = new View.OnTouchListener() {	
+//			@Override
+//			public boolean onTouch(View v, MotionEvent event) {
+//				return gestureDetector.onTouchEvent(event);
+//			}
+//		};		
+//		featuredVendorDescriptionView.setOnTouchListener(gestureListener);
+//		vendorGridView.setOnTouchListener(gestureListener);
 	}
 	
 	protected static void swipeRight(Context context) {

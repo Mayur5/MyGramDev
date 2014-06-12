@@ -18,6 +18,7 @@ public class SpringboardRosterViewAdapter extends BaseAdapter {
 	private Roster roster;
 	
 	public SpringboardRosterViewAdapter(Context context, Roster roster) {
+		super();
 		this.context = context;
 		this.roster = roster;
 	}
@@ -31,7 +32,7 @@ public class SpringboardRosterViewAdapter extends BaseAdapter {
 	@Override
 	public Object getItem(int position) {
 		// TODO Auto-generated method stub
-		return null;
+		return roster.getVendorAt(position);
 	}
 
 	@Override
@@ -45,26 +46,26 @@ public class SpringboardRosterViewAdapter extends BaseAdapter {
 		ArrayList<Vendor> vendors = roster.getVendors();
 				
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View springboardVendorGridView;
+		View vendorGridItemView;
 		
 		if(convertView == null) {
 			//inflate item view
-			springboardVendorGridView = new View(context);
-			springboardVendorGridView = inflater.inflate(R.layout.springboard_vendor_grid_item, null);
+			vendorGridItemView = new View(context);
+			vendorGridItemView = inflater.inflate(R.layout.springboard_vendor_grid_item, null);
 			
 			//Get layout from springboard_vendor_grid_item
-			TextView vendorName = (TextView)springboardVendorGridView.findViewById(R.id.springboard_vendor_grid_vendor_name);
-			ImageView vendorIcon = (ImageView)springboardVendorGridView.findViewById(R.id.springboard_vendor_grid_vendor_icon);
+			TextView vendorName = (TextView)vendorGridItemView.findViewById(R.id.springboard_vendor_grid_vendor_name);
+			ImageView vendorIcon = (ImageView)vendorGridItemView.findViewById(R.id.springboard_vendor_grid_vendor_icon);
 			
 			//Set values
 			vendorName.setText(vendors.get(position).getName());
 			vendorIcon.setImageResource(vendors.get(position).getIcon());
 			
 		} else {
-			springboardVendorGridView = (View) convertView;
+			vendorGridItemView = (View) convertView;
 		}
 		
-		return springboardVendorGridView;
+		return vendorGridItemView;
 	}
 
 }
