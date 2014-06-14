@@ -1,6 +1,12 @@
 package me.mygram.models;
 
-public class Vendor {
+import java.io.Serializable;
+
+public class Vendor implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3573497844953303494L;
 	private String name;
 	private int icon;
 	private String description;

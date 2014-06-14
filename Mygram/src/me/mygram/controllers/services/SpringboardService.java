@@ -2,9 +2,13 @@ package me.mygram.controllers.services;
 
 import java.util.ArrayList;
 
+import android.app.Activity;
 import android.content.Context;
+import android.view.View;
 import me.mygram.R;
 import me.mygram.models.Vendor;
+import me.mygram.views.SpringboardActivity;
+import me.mygram.views.SpringboardVendorActivity;
 
 public class SpringboardService implements GenericSpringboardService{
 	private ArrayList<Vendor> roster = new ArrayList<Vendor>();
@@ -26,11 +30,11 @@ public class SpringboardService implements GenericSpringboardService{
 		
 		
 		roster.add(new Vendor("Featured App").setIcon(skype_icon).setDescription("This is the featured app. It gets to be here right on top"));
-		roster.add(new Vendor("B").setIcon(linkedin_icon).setDescription("This is a description of linked in"));
-		roster.add(new Vendor("C").setIcon(instagram_icon).setDescription("This is a description of instagram"));
-		roster.add(new Vendor("D").setIcon(dropbox_icon).setDescription("This is a description of dropbox"));
-		roster.add(new Vendor("E").setIcon(blur_icon).setDescription("This is a description of blur"));
-		roster.add(new Vendor("F").setIcon(amazon_icon).setDescription("This is a description of amazon"));
+		roster.add(new Vendor("LinkedIn").setIcon(linkedin_icon).setDescription("This is a description of linked in"));
+		roster.add(new Vendor("Instagram").setIcon(instagram_icon).setDescription("This is a description of instagram"));
+		roster.add(new Vendor("Dropbox").setIcon(dropbox_icon).setDescription("This is a description of dropbox"));
+		roster.add(new Vendor("Blur").setIcon(blur_icon).setDescription("This is a description of blur"));
+		roster.add(new Vendor("Amazon").setIcon(amazon_icon).setDescription("This is a description of amazon"));
 		return roster;
 	}
 
@@ -50,4 +54,7 @@ public class SpringboardService implements GenericSpringboardService{
 		// TODO Auto-generated method stub
 		
 	}
+
+	
+
 }
