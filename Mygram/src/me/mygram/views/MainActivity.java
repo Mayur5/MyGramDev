@@ -29,47 +29,49 @@ public class MainActivity extends Activity {
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_main);  			
+    	
+    	//Set mailService to new mail service
+    	MailService mailService = MailServiceFactory.getMailService(this);
+    	inbox.setMailService(mailService);
 		
-		//Intent intent = new Intent(this, SpringboardActivity.class);
-		//startActivity(intent);
-		
-		//Set mailService to new mail service
-		MailService mailService = MailServiceFactory.getMailService(this);
-		inbox.setMailService(mailService);
-		
-		//Fetch Inbox emails
-		inbox.sync();
-		
-		///Populate Inbox ListView
-		final ListView inboxView = (ListView)findViewById(R.id.inboxView);
-		final InboxViewAdapter adapter = new InboxViewAdapter(this, R.layout.inbox_item, inbox);
-		inboxView.setAdapter(adapter);
-		
-		//Set clickListener
-		inboxView.setOnItemClickListener(new OnItemClickListener() {
-			
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				// Set selected on view
-				view.setSelected(true);
-				
-				//Set global selected to position
-				MainActivity.selected = position;
-			}
-		});
-		
-		//Set swipeListener
-		gestureDetector = new GestureDetector(this, new SwipeDetector());
-		gestureListener = new View.OnTouchListener() {
-			
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				return gestureDetector.onTouchEvent(event);
-			}
-		};
-		inboxView.setOnTouchListener(gestureListener);
+    	//Fetch Inbox emails
+    	inbox.sync();
 	}
+    
+    public void onResume() {
+    	super.onResume();
+    	
+    			
+    	///Populate Inbox ListView
+    	final ListView inboxView = (ListView)findViewById(R.id.inboxView);
+    	final InboxViewAdapter adapter = new InboxViewAdapter(this, R.layout.inbox_item, inbox);
+    	inboxView.setAdapter(adapter);
+    			
+    	//Set clickListener
+    	inboxView.setOnItemClickListener(new OnItemClickListener() {
+    				
+    		@Override
+    		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    			// Set selected on view
+    			view.setSelected(true);
+    					
+    			//Set global selected to position
+    			MainActivity.selected = position;
+    		}
+    	});
+    			
+    	//Set swipeListener
+    	gestureDetector = new GestureDetector(this, new SwipeDetector());
+    	gestureListener = new View.OnTouchListener() {
+    				
+    		@Override
+    		public boolean onTouch(View v, MotionEvent event) {
+    			return gestureDetector.onTouchEvent(event);
+    		}
+    	};
+    	inboxView.setOnTouchListener(gestureListener);
+    }
 
 	protected static void swipeRight(Context context) {
 		// TODO Auto-generated method stub

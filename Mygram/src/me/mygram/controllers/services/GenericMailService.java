@@ -10,5 +10,7 @@ public interface GenericMailService {
 	public void sendMessage(Message message);
 
 	public ArrayList<Conversation> sync(ArrayList<Conversation> conversations);
+	
+	public void addConversation(Conversation conversation);
 
 }

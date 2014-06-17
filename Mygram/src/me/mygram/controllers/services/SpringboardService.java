@@ -2,13 +2,9 @@ package me.mygram.controllers.services;
 
 import java.util.ArrayList;
 
-import android.app.Activity;
 import android.content.Context;
-import android.view.View;
 import me.mygram.R;
 import me.mygram.models.Vendor;
-import me.mygram.views.SpringboardActivity;
-import me.mygram.views.SpringboardVendorActivity;
 
 public class SpringboardService implements GenericSpringboardService{
 	private ArrayList<Vendor> roster = new ArrayList<Vendor>();
