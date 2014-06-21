@@ -49,37 +49,7 @@ public class MailService implements GenericMailService{
         final int pic6=R.drawable.pic6;
         final int thumbs_up=R.drawable.thumbs_up;
 		
-		Contact self = new Contact("Harini", "Appaiah").setProfilePic(from);
 		
-		Conversation a = new Conversation();
-		Contact contactA = new Contact("Lokesh", "Jagannathan").setProfilePic(pic1);
-		a.setCorrespondent(contactA);
-		a.appendMessage(new SMS("I got wipro job!!").setCorrespondent(contactA));
-		a.appendMessage(new Mail("Bombat!").setAttachment(thumbs_up).setAttachmentType("image").setCorrespondent(self));
-		a.appendMessage(new Mail("").setAttachment(jamesh_bond).setAttachmentType("image").setCorrespondent(contactA));
-		
-		Conversation b = new Conversation();
-		Contact contactB = new Contact("Kumari", "Bomman").setProfilePic(pic4);
-		b.setCorrespondent(contactB);
-		b.appendMessage(new Mail("9827345362").setCorrespondent(contactB));
-		b.appendMessage(new Mail("").setAttachment(love_smiley).setAttachmentType("file").setCorrespondent(self));
-		
-		Conversation e = new Conversation();
-		Contact contactE = new Contact("SPRINGBOARD", "SERVICE").setProfilePic(pic5);
-		e.setCorrespondent(contactE);
-		e.appendMessage((new Notification("").setAttachment(notification1)).setCorrespondent(contactE));
-		e.appendMessage(new Notification("").setAttachment(notification2).setCorrespondent(contactE));
-		e.appendMessage(new Notification("").setAttachment(notification3).setCorrespondent(contactE));
-	
-		Conversation f = new Conversation();
-		Contact contactF = new Contact("Priya", "Sarin").setProfilePic(pic6);
-		f.setCorrespondent(contactF);
-		f.appendMessage(new SMS("Why late?").setCorrespondent(contactF));
-		
-		conversations.add(a);
-		conversations.add(b);
-		conversations.add(e);
-		conversations.add(f);
 		
 		return conversations;
 	}

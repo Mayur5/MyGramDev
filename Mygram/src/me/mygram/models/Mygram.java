@@ -5,6 +5,8 @@ import android.app.Application;
 
 public class Mygram extends Application {
 	private MailService mailService;
+	private boolean registered = false;
+	private Credentials credentials;
 	
 	public Mygram(){
 		super();
@@ -19,5 +21,14 @@ public class Mygram extends Application {
 	
 	public MailService getMailService() {
 		return mailService;
+	}
+
+	public boolean isRegistered() {
+		return registered;
+	}
+
+	public Mygram setRegistered(boolean registered) {
+		this.registered = registered;
+		return this;
 	}
 }

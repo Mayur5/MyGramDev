@@ -5,6 +5,7 @@ import me.mygram.controllers.factories.MailServiceFactory;
 import me.mygram.controllers.services.MailService;
 import me.mygram.models.Conversation;
 import me.mygram.models.Inbox;
+import me.mygram.models.Mygram;
 import me.mygram.R;
 import android.app.Activity;
 import android.content.Context;
@@ -35,14 +36,21 @@ public class MainActivity extends Activity {
     	MailService mailService = MailServiceFactory.getMailService(this);
     	inbox.setMailService(mailService);
 		
-    	//Fetch Inbox emails
-    	inbox.sync();
+    	//If not registered, go through registration process
+    	Mygram mygram = (Mygram) getApplicationContext();
+    	if (mygram.isRegistered()) {
+    		//Fetch Inbox emails
+        	inbox.sync();
+    	} else {
+    		startRegistrationProcess();
+    	}
 	}
     
     public void onResume() {
     	super.onResume();
     	
-    			
+    	inbox.sync();
+    	    			
     	///Populate Inbox ListView
     	final ListView inboxView = (ListView)findViewById(R.id.inboxView);
     	final InboxViewAdapter adapter = new InboxViewAdapter(this, R.layout.inbox_item, inbox);
@@ -71,24 +79,14 @@ public class MainActivity extends Activity {
     		}
     	};
     	inboxView.setOnTouchListener(gestureListener);
+    	
+    	
     }
-
-	protected static void swipeRight(Context context) {
+    
+    private void startRegistrationProcess() {
 		// TODO Auto-generated method stub
-		Intent intent = new Intent(context, SpringboardActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-		context.startActivity(intent);
-	}
-
-	protected static void swipeLeft(Context context) {
-		// TODO Auto-generated method stub
-		Intent intent = new Intent(context, ConversationActivity.class);
-		if(MainActivity.selected != null) {
-			//Pass selected conversation
-			Conversation selectedConversation = inbox.getConversation(MainActivity.selected);
-			intent.putExtra("selectedConversation", selectedConversation);
-		}
-		context.startActivity(intent);
+		Intent intent = new Intent(this, RegistrationActivity.class);
+		startActivity(intent);
 	}
 
 	public void goToConversationView(View v) {
@@ -128,5 +126,23 @@ public class MainActivity extends Activity {
 	    public boolean onDown(MotionEvent e) {
 			  return true;
 	    }
+	}
+
+	protected static void swipeRight(Context context) {
+		// TODO Auto-generated method stub
+		Intent intent = new Intent(context, SpringboardActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+		context.startActivity(intent);
+	}
+
+	protected static void swipeLeft(Context context) {
+		// TODO Auto-generated method stub
+		Intent intent = new Intent(context, ConversationActivity.class);
+		if(MainActivity.selected != null) {
+			//Pass selected conversation
+			Conversation selectedConversation = inbox.getConversation(MainActivity.selected);
+			intent.putExtra("selectedConversation", selectedConversation);
+		}
+		context.startActivity(intent);
 	}
 }
