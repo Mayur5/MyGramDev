@@ -31,4 +31,14 @@ public class Mygram extends Application {
 		this.registered = registered;
 		return this;
 	}
+
+	public Credentials getCredentials() {
+		return credentials;
+	}
+
+	public void setCredentials(Credentials credentials) {
+		this.credentials = credentials;
+	}
+	
+	
 }
