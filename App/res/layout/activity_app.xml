@@ -40,15 +40,6 @@
 	    android:id="@+id/inboxView"
     	android:layout_width="match_parent"
     	android:layout_height="0dp"
-    	android:layout_weight="1" /> 
-    
-    <Button 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:background="@drawable/orange_button"
-        android:text="@string/go"
-        style="@style/button_text"
-        android:onClick="goToConversationView" />    
+    	android:layout_weight="1" />    
     
 </LinearLayout>

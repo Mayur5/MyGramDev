@@ -1,11 +1,11 @@
-package me.mygram.client.views;
+package me.mygram.client;
 
 import android.os.Bundle;
 import me.mygram.client.R;
-import me.mygram.controllers.factories.MailServiceFactory;
 import me.mygram.controllers.services.MailService;
 import me.mygram.models.Contact;
 import me.mygram.models.Conversation;
+import me.mygram.models.Credentials;
 import me.mygram.models.Mail;
 import me.mygram.views.MyActivity;
 
@@ -21,10 +21,11 @@ public class TutorialActivity extends MyActivity {
 	protected void onResume() {
 		super.onResumeParentMethod();
 		MailService mailService = getMailService();
+		Credentials credentials = new Credentials("Big Sooth", "Vishwanathan").setLanguagePreference("kannada");
 		
 		Contact contact = (Contact) new Contact("Springboard", "Service").setProfilePic(R.drawable.ic_launcher);
-		Mail mail = (Mail) new Mail("Welcome to Mygram! Your username is <TODO>" + 
-									" Your language preference is: <TODO>");
+		Mail mail = (Mail) new Mail("Welcome to Mygram! Your username is <TODO>" + credentials.getFirstName() +
+									" Your language preference is: <TODO>" + credentials.getLanguagePreference()).setCorrespondent(contact);
 		
 		//Construct conversation
 		Conversation conversation = new Conversation();
@@ -34,5 +35,4 @@ public class TutorialActivity extends MyActivity {
 		//Add to inbox
 		mailService.addConversation(conversation);
 	}
-
 }

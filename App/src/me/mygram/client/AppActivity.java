@@ -1,11 +1,16 @@
 package me.mygram.client;
 
-import me.mygram.client.views.TutorialActivity;
+import me.mygram.models.Conversation;
 import me.mygram.models.Inbox;
 import me.mygram.sample.controllers.adapters.InboxViewAdapter;
+import me.mygram.sample.views.ConversationActivity;
 import me.mygram.views.MyActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 /**
@@ -34,9 +39,29 @@ public class AppActivity extends MyActivity {
 		
 		inbox.sync();
 		
+		//Populate inbox listView
 		final ListView inboxView = (ListView)findViewById(R.id.inboxView);
 		final InboxViewAdapter adapter = new InboxViewAdapter(this, R.layout.inbox_item, inbox);
 		inboxView.setAdapter(adapter);
+		
+		//Set clickListener
+		inboxView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int index, long id) {
+				// TODO Auto-generated method stub
+				AppActivity.gotoSelectedConversation(index, AppActivity.this);
+			}
+			
+		});
+	}
+
+	protected static void gotoSelectedConversation(int index, Context context) {
+		// TODO Auto-generated method stub
+		Intent intent = new Intent(context, ConversationActivity.class);
+		Conversation selectedConversation = inbox.getConversation(index);
+		intent.putExtra("selectedConversation", selectedConversation);
+		context.startActivity(intent);
 	}
 
 	private void launchTutorial() {
