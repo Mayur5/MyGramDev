@@ -1,19 +1,16 @@
-package me.mygram.views;
+package me.mygram.sample.views;
 
 import me.mygram.R;
-import me.mygram.controllers.adapters.SpringboardRosterViewAdapter;
 import me.mygram.controllers.factories.SpringboardServiceFactory;
 import me.mygram.controllers.services.SpringboardService;
 import me.mygram.models.Roster;
 import me.mygram.models.Vendor;
+import me.mygram.sample.controllers.adapters.SpringboardRosterViewAdapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.GestureDetector.SimpleOnGestureListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
@@ -21,8 +18,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class SpringboardActivity extends Activity {
-	private GestureDetector gestureDetector;
-	private View.OnTouchListener gestureListener;	
 	private SpringboardService springboardService;
 	private static Roster roster = new Roster();
 	private static int selected;
@@ -65,17 +60,6 @@ public class SpringboardActivity extends Activity {
 				featuredVendorDescriptionView.setText(roster.getVendorAt(position).getDescription());
 			}
 		});
-		
-		//Set swipeListener
-//		gestureDetector = new GestureDetector(this, new SwipeDetector());
-//		gestureListener = new View.OnTouchListener() {	
-//			@Override
-//			public boolean onTouch(View v, MotionEvent event) {
-//				return gestureDetector.onTouchEvent(event);
-//			}
-//		};		
-//		featuredVendorDescriptionView.setOnTouchListener(gestureListener);
-//		vendorGridView.setOnTouchListener(gestureListener);
 	}
 	
 	public void launchVendor(View v) {
@@ -95,32 +79,5 @@ public class SpringboardActivity extends Activity {
 		intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 		context.startActivity(intent);
 	}
-	
-	private final class SwipeDetector extends SimpleOnGestureListener {
-		private static final int SWIPE_MIN_DISTANCE = 120;
-	    private static final int SWIPE_MAX_OFF_PATH = 250;
-	    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
-		
-		@Override
-		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-		    try {
-		        if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
-		            return false;
-		        // right to left swipe
-		        if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-		        	SpringboardActivity.swipeLeft(SpringboardActivity.this);
-		        }  else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-		        	SpringboardActivity.swipeRight(SpringboardActivity.this);
-		        } 
-		    } catch (Exception e) {
-		        // nothing
-		    }
-		    return false;
-		}
 
-		@Override
-	    public boolean onDown(MotionEvent e) {
-			  return true;
-	    }
-	}
 }

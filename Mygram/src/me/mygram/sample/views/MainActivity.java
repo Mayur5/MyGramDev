@@ -1,11 +1,11 @@
-package me.mygram.views;
+package me.mygram.sample.views;
 
-import me.mygram.controllers.adapters.InboxViewAdapter;
 import me.mygram.controllers.factories.MailServiceFactory;
 import me.mygram.controllers.services.MailService;
 import me.mygram.models.Conversation;
 import me.mygram.models.Inbox;
 import me.mygram.models.Mygram;
+import me.mygram.sample.controllers.adapters.InboxViewAdapter;
 import me.mygram.R;
 import android.app.Activity;
 import android.content.Context;

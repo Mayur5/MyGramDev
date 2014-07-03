@@ -26,19 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="me.mygram.views.ConversationActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name="me.mygram.views.SpringboardActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name="me.mygram.views.SpringboardVendorActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name="me.mygram.views.RegistrationActivity"
+            android:name="me.mygram.client.views.TutorialActivity"
             android:label="@string/app_name" >
         </activity>
     </application>

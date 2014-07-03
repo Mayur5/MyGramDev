@@ -1,4 +1,4 @@
-package me.mygram.views;
+package me.mygram.sample.views;
 
 import me.mygram.R;
 import me.mygram.controllers.factories.MailServiceFactory;

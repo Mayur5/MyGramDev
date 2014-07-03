@@ -1,4 +1,4 @@
-package me.mygram.controllers.adapters;
+package me.mygram.sample.controllers.adapters;
 
 import java.text.DateFormat;
 

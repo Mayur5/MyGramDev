@@ -1,7 +1,7 @@
-package me.mygram.views;
+package me.mygram.sample.views;
 
-import me.mygram.controllers.adapters.ConversationViewAdapter;
 import me.mygram.models.Conversation;
+import me.mygram.sample.controllers.adapters.ConversationViewAdapter;
 import me.mygram.R;
 import android.app.Activity;
 import android.content.Context;
