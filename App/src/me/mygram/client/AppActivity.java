@@ -4,6 +4,7 @@ import me.mygram.models.Conversation;
 import me.mygram.models.Inbox;
 import me.mygram.sample.controllers.adapters.InboxViewAdapter;
 import me.mygram.sample.views.ConversationActivity;
+import me.mygram.sample.views.SpringboardActivity;
 import me.mygram.views.MyActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -18,11 +19,13 @@ import android.widget.ListView;
  */
 public class AppActivity extends MyActivity {
 	protected static Inbox inbox = new Inbox();
+	protected Context context;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreateParentMethod(savedInstanceState);
 		setContentView(R.layout.activity_app);
+		context = (Context)getApp();
 		inbox.setMailService(getMailService());
 		
 		if(isRegistered()) {
@@ -53,6 +56,18 @@ public class AppActivity extends MyActivity {
 			}
 			
 		});
+	}
+	
+	public void goToSpringboard(View v) {
+		Intent intent = new Intent(this, SpringboardActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+		startActivity(intent);
+	}
+	
+	public void goToNewConversation(View v) {
+		Intent intent = new Intent(this, ConversationActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+		startActivity(intent);
 	}
 
 	protected static void gotoSelectedConversation(int index, Context context) {
