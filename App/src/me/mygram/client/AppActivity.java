@@ -17,7 +17,6 @@ import android.widget.ListView;
  * 
  */
 public class AppActivity extends MyActivity {
-	private static Integer selected;
 	protected static Inbox inbox = new Inbox();
 
 	@Override
