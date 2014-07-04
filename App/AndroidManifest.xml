@@ -30,7 +30,7 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="me.mygram.sample.views.ConversationActivity"
+            android:name="me.mygram.client.ConversationActivity"
             android:label="@string/app_name" >
         </activity>
         <activity

@@ -3,8 +3,8 @@ package me.mygram.client;
 import me.mygram.models.Conversation;
 import me.mygram.models.Inbox;
 import me.mygram.sample.controllers.adapters.InboxViewAdapter;
-import me.mygram.sample.views.ConversationActivity;
 import me.mygram.sample.views.SpringboardActivity;
+import me.mygram.client.ConversationActivity;
 import me.mygram.views.MyActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -66,7 +66,6 @@ public class AppActivity extends MyActivity {
 	
 	public void goToNewConversation(View v) {
 		Intent intent = new Intent(this, ConversationActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 		startActivity(intent);
 	}
 
