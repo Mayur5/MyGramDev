@@ -34,11 +34,11 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="me.mygram.sample.views.SpringboardActivity"
+            android:name="me.mygram.client.SpringboardActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="me.mygram.sample.views.SpringboardVendorActivity"
+            android:name="me.mygram.client.SpringboardVendorActivity"
             android:label="@string/app_name" >
         </activity>
     </application>

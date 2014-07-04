@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/conversation_item_wrapper"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="20dp"
+    android:padding="5dp"
+    android:background="#f9f9f4" >
+
+     <TextView
+        android:id="@+id/message_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="5dp"
+        android:textSize="16sp" >
+    </TextView>
+           
+    <ImageView 
+        android:id="@+id/image_attachment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/message_text"
+        android:layout_alignParentLeft="true"    
+        android:layout_marginRight="5dp"
+        android:scaleType="fitXY"
+        android:contentDescription="@string/go" >
+    </ImageView>
+    
+    <TextView 
+        android:id="@+id/conversation_message_time_stamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/image_attachment"
+        android:textSize="12sp" />
+ 
+</RelativeLayout>

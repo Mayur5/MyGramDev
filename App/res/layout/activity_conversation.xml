@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context="me.mygram.client.AppActivity"
+    tools:context="me.mygram.client.ConversationActivity"
     tools:ignore="MergeRootFrame">
     
     <RelativeLayout
@@ -25,6 +25,28 @@
             android:contentDescription="@string/hello_world" />
         
         <ImageView
+            android:id="@+id/conversation_correspondent_profile_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/title_bar_logo"
+            android:contentDescription="@string/go"
+            android:src="@drawable/user" />
+	        
+        <TextView
+            android:id="@+id/conversation_correspondent_name"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/conversation_correspondent_profile_pic"
+            android:text="User Name" />
+        
+        <ImageView
             android:id="@+id/title_bar_hamburger"
             android:layout_width="20dp"
             android:layout_height="20dp"
@@ -37,12 +59,12 @@
     </RelativeLayout>    
 
     <ListView 
-	    android:id="@+id/inboxView"
+	    android:id="@+id/conversationView"
     	android:layout_width="match_parent"
     	android:layout_height="0dp"
     	android:layout_weight="1"
     	android:background="#f9f9f3" />    
-    
+    	
     <RelativeLayout
         android:id="@+id/bottom_bar"
         android:layout_width="fill_parent"
@@ -51,7 +73,7 @@
         android:background="#ffffff">
         
         <Button
-            android:id="@+id/inbox_view_springboard_icon"
+            android:id="@+id/conversation_view_springboard_icon"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentLeft="true"
@@ -62,7 +84,7 @@
             android:onClick="goToSpringboard" />
         
         <Button
-            android:id="@+id/inbox_view_new_message_icon"
+            android:id="@+id/conversation_view_inbox_icon"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
@@ -70,8 +92,8 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:contentDescription="@string/hello_world"
-            android:background="@drawable/new_message"
-            android:onClick="goToNewConversation" />
+            android:background="@drawable/mail"
+            android:onClick="goToInbox" />
         
     </RelativeLayout>    
     

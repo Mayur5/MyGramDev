@@ -3,7 +3,6 @@ package me.mygram.client;
 import me.mygram.models.Conversation;
 import me.mygram.models.Inbox;
 import me.mygram.sample.controllers.adapters.InboxViewAdapter;
-import me.mygram.sample.views.SpringboardActivity;
 import me.mygram.client.ConversationActivity;
 import me.mygram.views.MyActivity;
 import android.content.Context;
