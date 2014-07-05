@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import me.mygram.R;
-import me.mygram.controllers.factories.MailServiceFactory;
 import me.mygram.controllers.services.MailService;
 import me.mygram.models.Contact;
 import me.mygram.models.Conversation;
@@ -46,7 +44,7 @@ public class SpringboardVendorActivity extends MyActivity {
 	public void submitInput(View v) {
 		//Get submission
 		String submission = vendorInput.getText().toString();
-		Contact contact = new Contact("Springboard", "Service").setProfilePic(R.drawable.springboard);
+		Contact contact = new Contact("Springboard", "Service").setProfilePic(R.drawable.grid);
 		
 		//Create mail
 		Message vendorEmail = (Message) new Mail(submission)
