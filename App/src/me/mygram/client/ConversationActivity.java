@@ -46,9 +46,8 @@ public class ConversationActivity extends MyActivity {
 		super.onResumeParentMethod();
 	}
 	
-	public void goToSpringboard(View v) {
-		Intent intent = new Intent(this, SpringboardActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+	public void goToNewConversation(View v) {
+		Intent intent = new Intent(this, ConversationActivity.class);
 		startActivity(intent);
 	}
 	

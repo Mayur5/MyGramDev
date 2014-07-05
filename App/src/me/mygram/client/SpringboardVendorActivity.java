@@ -46,7 +46,7 @@ public class SpringboardVendorActivity extends MyActivity {
 	public void submitInput(View v) {
 		//Get submission
 		String submission = vendorInput.getText().toString();
-		Contact contact = new Contact("Springboard", "Service").setProfilePic(R.drawable.ic_launcher);
+		Contact contact = new Contact("Springboard", "Service").setProfilePic(R.drawable.springboard);
 		
 		//Create mail
 		Message vendorEmail = (Message) new Mail(submission)

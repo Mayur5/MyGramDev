@@ -36,7 +36,7 @@ public class TutorialActivity extends MyActivity {
 		MailService mailService = getMailService();
 		
 		//Construct conversation
-		Contact contact = (Contact) new Contact("Springboard", "Service").setProfilePic(R.drawable.ic_launcher);
+		Contact contact = (Contact) new Contact("Springboard", "Service").setProfilePic(R.drawable.grid);
 		Mail mail = (Mail) new Mail("Welcome to Mygram! Your username is " + credentials.getUserName() +
 									" Your language preference is: " + credentials.getLanguagePreference()).setCorrespondent(contact);
 		Conversation conversation = new Conversation();

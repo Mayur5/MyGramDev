@@ -17,22 +17,25 @@
         
         <ImageView
             android:id="@+id/springboard_activity_title_bar_logo"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/ic_launcher"
-            android:contentDescription="@string/hello_world" />
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:contentDescription="@string/hello_world"
+            android:src="@drawable/grid" />
         
         <ImageView
             android:id="@+id/springboard_activity_title_bar_hamburger"
             android:layout_width="20dp"
             android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/hamburger_icon_temp"
-            android:contentDescription="@string/hello_world" />
+            android:contentDescription="@string/hello_world"
+            android:src="@drawable/hamburger_icon_temp" />
         
     </RelativeLayout>  
     
@@ -131,12 +134,12 @@
 
         <Button
             android:id="@+id/springboard_activity_new_message_icon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="14dp"
-            android:background="@drawable/new_message"
+            android:background="@drawable/search"
             android:contentDescription="@string/hello_world"
             android:onClick="goToNewConversation" />
 
