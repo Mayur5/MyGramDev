@@ -1,4 +1,4 @@
-package me.mygram.sample.controllers.adapters;
+package me.mygram.example.controllers.adapters;
 
 import java.util.ArrayList;
 

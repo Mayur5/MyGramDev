@@ -1,4 +1,4 @@
-package me.mygram.client;
+package me.mygram.example.client;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,9 +10,9 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import me.mygram.R;
 import me.mygram.controllers.services.SpringboardService;
+import me.mygram.example.controllers.adapters.SpringboardRosterViewAdapter;
 import me.mygram.models.Roster;
 import me.mygram.models.Vendor;
-import me.mygram.sample.controllers.adapters.SpringboardRosterViewAdapter;
 import me.mygram.views.MyActivity;
 
 public class SpringboardActivity extends MyActivity {

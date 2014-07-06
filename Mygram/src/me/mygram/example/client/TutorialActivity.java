@@ -1,11 +1,11 @@
-package me.mygram.client;
+package me.mygram.example.client;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import me.mygram.client.R;
+import me.mygram.R;
 import me.mygram.controllers.services.MailService;
 import me.mygram.models.Contact;
 import me.mygram.models.Conversation;

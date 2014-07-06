@@ -1,9 +1,10 @@
-package me.mygram.client;
+package me.mygram.example.client;
 
+import me.mygram.R;
 import me.mygram.models.Conversation;
 import me.mygram.models.Inbox;
-import me.mygram.sample.controllers.adapters.InboxViewAdapter;
-import me.mygram.client.ConversationActivity;
+import me.mygram.example.client.ConversationActivity;
+import me.mygram.example.controllers.adapters.InboxViewAdapter;
 import me.mygram.views.MyActivity;
 import android.content.Context;
 import android.content.Intent;

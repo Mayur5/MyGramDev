@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context="me.mygram.client.ConversationActivity"
+    tools:context="me.mygram.example.client.ConversationActivity"
     tools:ignore="MergeRootFrame">
     
     <RelativeLayout

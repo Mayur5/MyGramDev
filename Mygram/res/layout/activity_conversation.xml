@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context="me.mygram.views.ConversationActivity"
+    tools:context="me.mygram.example.client.ConversationActivity"
     tools:ignore="MergeRootFrame">
     
     <RelativeLayout
@@ -17,38 +17,46 @@
         
         <ImageView
             android:id="@+id/title_bar_logo"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/ic_launcher"
-            android:contentDescription="@string/hello_world" />
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:contentDescription="@string/hello_world"
+            android:src="@drawable/conversation" />
         
-        <ImageView 
-	        android:id="@+id/conversation_correspondent_profile_pic"
-	        android:layout_width="wrap_content"
-	        android:layout_height="40dp"
-	        android:layout_toRightOf="@id/title_bar_logo"
-	        android:layout_marginLeft="5dp"
-	        android:layout_marginTop="10dp"
-	        android:contentDescription="@string/go" />  
-	        
-        <TextView 
-            android:id="@+id/conversation_correspondent_name" 
+        <ImageView
+            android:id="@+id/conversation_correspondent_profile_pic"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_toRightOf="@id/conversation_correspondent_profile_pic"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/title_bar_logo"
+            android:contentDescription="@string/go"
+            android:src="@drawable/user" />
+	        
+        <TextView
+            android:id="@+id/conversation_correspondent_name"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
             android:layout_marginLeft="3dp"
-            android:layout_marginTop="10dp" />         
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/conversation_correspondent_profile_pic"
+            android:text="User Name" />
+        
         <ImageView
             android:id="@+id/title_bar_hamburger"
             android:layout_width="20dp"
             android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/hamburger_icon_temp"
-            android:contentDescription="@string/hello_world" />
+            android:contentDescription="@string/hello_world"
+            android:src="@drawable/hamburger_icon_temp" />
         
     </RelativeLayout>    
 
@@ -56,71 +64,39 @@
 	    android:id="@+id/conversationView"
     	android:layout_width="match_parent"
     	android:layout_height="0dp"
-    	android:layout_weight="1" /> 
-    
-<!--     <EditText  -->
-<!--         android:id="@+id/compose_edit_text" -->
-<!--         android:layout_width="fill_parent" -->
-<!-- 		android:layout_height="wrap_content" -->
-<!-- 		android:inputType="none" -->
-<!-- 		android:scrollHorizontally="true" -->
-<!--         android:hint="@string/compose_hint" -->
-<!--         android:imeOptions="actionSend"/> -->
-    
-    <LinearLayout
-        android:id="@+id/compose_button_bar"
-        android:layout_width="match_parent"
-    	android:layout_height="wrap_content"
-        android:weightSum="4" >
+    	android:layout_weight="1"
+    	android:background="#f9f9f3" />    
+    	
+    <RelativeLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:layout_gravity="bottom"
+        android:background="#ffffff">
         
-        <Button 
-	        android:layout_width="wrap_content"
-    	    android:layout_height="wrap_content"
-        	android:text="@string/image_reply"
-        	android:layout_weight="1"
-        	android:background="@drawable/orange_button"
-        	style="@style/button_text"
-        	android:onClick="goToConversation" />   
+        <Button
+            android:id="@+id/conversation_view_inbox_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:contentDescription="@string/hello_world"
+            android:background="@drawable/mail"
+            android:onClick="goToInbox" />
         
-    	<Button 
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:text="@string/pictogram_reply"
-        	android:layout_weight="1"
-        	android:background="@drawable/orange_button"
-        	style="@style/button_text"
-        	android:onClick="goToConversation" />   
+        <Button
+            android:id="@+id/conversation_view_new_conversation"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/hello_world"
+            android:background="@drawable/new_message"
+            android:onClick="goToNewConversation" />
         
-    	<Button 
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:text="@string/file_reply"
-        	android:layout_weight="1"
-        	android:background="@drawable/orange_button"
-        	style="@style/button_text"
-        	android:onClick="goToConversation" /> 
-        	
-    	<Button 
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:text="@string/text_reply"
-        	android:layout_weight="1"
-        	android:background="@drawable/orange_button"
-        	style="@style/button_text"
-        	android:onClick="goToConversation" /> 
-        	  
-        	
-	</LinearLayout>
-	
-    <Button 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:layout_marginLeft="1dp"
-        android:layout_marginRight="1dp"
-        android:background="@drawable/orange_button"
-        style="@style/button_text"
-        android:text="@string/go" /> 
+    </RelativeLayout>    
     
 </LinearLayout>
-

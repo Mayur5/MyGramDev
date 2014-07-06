@@ -1,4 +1,4 @@
-package me.mygram.client;
+package me.mygram.example.client;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import me.mygram.R;
+import me.mygram.example.controllers.adapters.ConversationViewAdapter;
 import me.mygram.models.Conversation;
-import me.mygram.sample.controllers.adapters.ConversationViewAdapter;
 import me.mygram.views.MyActivity;
 
 public class ConversationActivity extends MyActivity {
