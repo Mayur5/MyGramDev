@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Insert title here</title>
+	<!-- <link rel="stylesheet" href="file:///android_asset/css/bootstrap.css" type="text/css" /> -->
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/krishiStyles.css" type="text/css" />
+	<script type="text/javascript" src="js/jquery1.11.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+	<style>
+		@import url(http://fonts.googleapis.com/earlyaccess/notosanskannada.css);
+	</style>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="header row">
+			<div class="logo col-md-7 col-xs-8"><strong>Krishi</strong>Soochana</div>
+			<div class="userArea col-md-5 col-xs-4">Welcome Rajesh!</div>
+		</div>
+
+		<div class="selectionArea row">
+			<div class="selectDistrictLabel col-xs-12">Select District</div>
+			<div class="selectDistrictContainer col-xs-12">
+				<select class="selectDistrict">
+					<option value="0">Select</option>
+					<option value="1">Bagalkot</option>
+					<option value="2">Bangalore Rural</option>
+					<option value="3">Bangalore Urban</option>		
+				</select>
+			</div>
+			<div class="selectTalukLabel col-xs-12">Select Taluk</div>
+			<div class="selectTalukContainer col-xs-12">
+				<select class="selectTaluk" disabled="disabled">
+					<option value="0">Select</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="weatherArea row">
+			<div class="weatherDate col-xs-12">Date: <span class="date">18-06-2014</span></div><br/><br/>
+			<div class="weatherPlace col-xs-12">Place: <span class="place"></span></div><br/><br/>
+			<div class="leftBtnContainer col-xs-2">
+				<img src="img/goLeftBtn.png"><span class="prevDateLabel">Previous</span>
+			</div>
+
+			<img src="img/placeholder1.png" class="weather col-xs-8">
+
+			<div class="rightBtnContainer col-xs-2">
+				<img src="img/goRightBtn.png"><span class="nextDateLabel">Next</span>
+			</div>
+		</div>
+
+	</div>
+
+	<script type="text/javascript">
+	var flag = 0;
+
+	$(".selectDistrict").change(function(){
+		$('.selectTaluk')
+		    .find('option')
+		    .remove()
+		    .end()
+		    .append('<option value="0">Select</option>')
+		    .val('0');
+		if($(this).val()!="0"){
+			$(".selectTaluk").prop('disabled', false);
+			if($(this).val()=="1"){
+				$(".selectTaluk").append(new Option('Bagalkot', '1'));
+				$(".selectTaluk").append(new Option('Jamkhandi', '2'));
+				$(".selectTaluk").append(new Option('Mudhol', '3'));
+				$(".selectTaluk").append(new Option('Badami', '4'));
+			} else if($(this).val()=="2"){
+				$(".selectTaluk").append(new Option('Dodballapur', '1'));
+				$(".selectTaluk").append(new Option('Devanahalli', '2'));
+				$(".selectTaluk").append(new Option('Hoskote', '3'));
+				$(".selectTaluk").append(new Option('Nelamangala', '4'));
+			} else if($(this).val()=="2"){
+				$(".selectTaluk").append(new Option('Anekal', '1'));
+				$(".selectTaluk").append(new Option('Bangalore North', '2'));
+				$(".selectTaluk").append(new Option('Bangalore East', '3'));
+				$(".selectTaluk").append(new Option('Bangalore South', '4'));
+			}
+		} else{
+			$(".selectTaluk").prop('disabled', 'disabled');
+			flag = 0;
+		}
+	})
+
+	$(".selectTaluk").change(function(){
+		flag = 1;
+		var talukName = $(".selectTaluk option:selected").text();
+		$(".place").text(talukName);
+
+		$(".weather").attr("src","img/31partlycloudy.png");
+	})
+
+	$(".rightBtnContainer").click(function(){
+		if(flag == 1){
+			var date=$(".date").text();
+			var dateArr=date.split("-");
+			var day = dateArr[0];
+			day *= 1;
+			day += 1;
+			var nextDate = ""+day+"-"+dateArr[1]+"-"+dateArr[2];
+			$(".date").text(nextDate);
+			$(".weather").attr("src","img/27mediumshowers.png");
+		}
+	})
+
+	$(".leftBtnContainer").click(function(){
+		if(flag == 1){
+			var date=$(".date").text();
+			var dateArr=date.split("-");
+			var day = dateArr[0];
+			day *= 1;
+			day -= 1;
+			var nextDate = ""+day+"-"+dateArr[1]+"-"+dateArr[2];
+			$(".date").text(nextDate);
+			$(".weather").attr("src","img/31partlycloudy.png");
+		}
+	})
+	</script>
+
+</body>
+
+</html>

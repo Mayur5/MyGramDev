@@ -4,6 +4,7 @@ import me.mygram.controllers.factories.MailServiceFactory;
 import me.mygram.controllers.factories.SpringboardServiceFactory;
 import me.mygram.controllers.services.MailService;
 import me.mygram.controllers.services.SpringboardService;
+import me.mygram.models.Credentials;
 import me.mygram.models.Mygram;
 import android.app.Activity;
 import android.os.Bundle;
@@ -51,7 +52,16 @@ public abstract class MyActivity extends Activity implements MygramActivity{
 		// TODO Auto-generated method stub
 		return SpringboardServiceFactory.getSpringboardService(getApp());
 	}
-	
-	
+
+	@Override
+	public Credentials getCredentials() {
+		// TODO Auto-generated method stub
+		return getApp().getCredentials();
+	}
+
+	@Override
+	public void setCredentials(Credentials credentials) {
+		getApp().setCredentials(credentials);
+	}	
 	
 }

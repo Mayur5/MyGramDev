@@ -1,0 +1,155 @@
+.body{
+	font-family: "Open Sans", sans-serif;
+}
+.header{
+	height:50px;
+	border-bottom: 1px solid #212121;
+	background:#e74c3c;
+}
+
+.logo{
+	font-family: "Oswald", sans-serif;
+	font-size: 24px;
+	color:#fff;
+	line-height: 50px;
+}
+
+.userArea{
+	font-family: "Open Sans", sans-serif;
+	font-size: 12px;
+	font-weight: 700;
+	color:#fff;
+	text-align: center;
+	line-height: 50px;
+	text-decoration: underline;
+}
+
+.welcome{
+	height:40px;
+	font-family: "Open Sans", sans-serif;
+	font-size: 16px;
+	font-weight: 300;
+	color:#e74c3c;
+	text-align: center;
+	background:#212121;
+	border-bottom: 1px solid #212121;
+	line-height: 40px;
+}
+
+.jobRowContainer{
+	height: 80px;
+	border-bottom: 1px solid #212121;
+}
+
+.overlay{
+	height: 80px;
+	width: 100%;
+	//display:none;
+	position:absolute;
+	z-index: 999;
+	background-color: rgba(33,33,33,0.95);
+	text-align: center;
+	display: none;
+}
+
+.confirmBtn, .cancelBtn{
+	display: inline-block;
+	height: 30px;
+	width: 80px;
+	margin-top: 25px;
+	background: #e74c3c;
+	border: 1px solid #c0392b;
+	color:#fff;
+	font-family: "Oswald", sans-serif;
+	font-size: 14px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.jobImageContainer{
+	height:50px;
+	margin-top: 10px;
+}
+
+.jobImage{
+	width: 50px;
+	height: 50px;
+}
+
+.jobDetailsContainer{
+}
+
+.jobHeading{
+	padding-top: 2px;
+	padding-left: 10px;
+	width: 100%;
+	height:30px;
+	font-family: "Oswald", sans-serif;
+	font-size: 14px;
+	color:#212121;
+	line-height: 16px;
+}
+
+.jobDescription{
+	padding-top: 4px;
+	padding-left: 10px;
+	width: 100%;
+	height:50px;
+	font-family: "Open Sans", sans-serif;
+	font-size: 12px;
+	color:#212121;
+}
+
+.jobApplyContainer{
+}
+
+.applyBtn{
+	height: 30px;
+	width: 100%;
+	margin-top: 25px;
+	background: #e74c3c;
+	border: 1px solid #c0392b;
+	color:#fff;
+	font-family: "Oswald", sans-serif;
+	font-size: 14px;
+}
+
+.messageContainer{
+	position: absolute;
+	top:0px;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0,0,0,0.92);
+	z-index: 999999;
+	display: inline-block;
+	display: none;
+}
+
+.message{
+	color: #fff;
+	text-align:center;
+	margin-top: 80px;
+}
+
+.actionContainer{
+	text-align: center;
+	margin-top: 30px;
+}
+
+.applyMoreBtn{
+	font-family: "Oswald", sans-serif;
+	font-size: 12px;
+	width: 110px;
+	height: 40px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.returnToAppBtn{
+	font-family: "Oswald", sans-serif;
+	font-size: 12px;
+	width: 110px;
+	height: 40px;
+	margin-left: 5px;
+	margin-right: 5px;
+}

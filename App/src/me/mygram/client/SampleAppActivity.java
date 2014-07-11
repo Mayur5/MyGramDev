@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import me.mygram.example.client.AppActivity;
-import me.mygram.views.MyActivity;
 
 public class SampleAppActivity extends Activity {
 

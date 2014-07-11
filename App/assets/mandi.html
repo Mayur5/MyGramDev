@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Insert title here</title>
+	<!-- <link rel="stylesheet" href="file:///android_asset/css/bootstrap.css" type="text/css" /> -->
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/mandiStyles.css" type="text/css" />
+	<script type="text/javascript" src="js/jquery1.11.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Dosis:400,600|Lobster' rel='stylesheet' type='text/css'>
+	<style>
+		@import url(http://fonts.googleapis.com/earlyaccess/notosanskannada.css);
+	</style>
+</head>
+<body>
+	<div class="messageContainer">
+		<div class="message"></div>
+		<div class="actionContainer">
+			<button class="applyMoreBtn">Make more bids</button>
+			<button class="returnToAppBtn">Return to app</button>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="header row">
+			<div class="logo col-md-7 col-xs-7">mandi</div>
+			<div class="userArea col-md-5 col-xs-5">Welcome back Rajesh!</div>
+		</div>
+
+		<div class="welcome row">Check bidding for:<br/>
+			<select class="selectBox">
+				<option value="0">Select</option>
+				<option value="1">Onion</option>
+				<option value="2">Potato</option>
+				<option value="3">Tomato</option>		
+			</select>
+		</div>
+
+		<div class="productDetailsArea row">
+			<div class="productImageContainer col-xs-3">
+				<img class="productImage" src="img/placeholder.jpg" />
+			</div>
+			<div class="productName col-xs-9">Product Name</div>
+			<div class="productDescription col-xs-9">Product Description</div>
+		</div>
+
+		<!--<div class="buyerDetailsArea row">
+			<div class="buyerHeader col-xs-12">Procurer Details</div><br/>
+			<div class="buyerNameLabel label col-xs-4">Buyer Name:</div><div class="buyerName buyerDetails col-xs-8">Buyer Name</div><br/>
+			<div class="buyerAddressLabel label col-xs-4">Buyer Address:</div><div class="buyerName buyerDetails col-xs-8">Buyer Address</div>
+		</div>-->
+
+		<div class="bidDetailsArea row">
+			<div class="bidDetailsHeader col-xs-6">Bidding Close Date:</div><div class="bidCloseDate col-xs-6">-</div><br/>
+		</div>
+		<div class="bidArea row">
+			<div class="bidAreaHeader col-xs-6">Current Bid/100 KG: </div>
+			<div class="currentBidAmount col-xs-6">0.00</div><br/><br/>
+
+			<div class="bidAreaHeader col-xs-12">Your Bid/100 KG</div><br/>
+			<div class="leftBtnContainer col-xs-3">
+				<img src="img/leftBtn.png">
+			</div>
+
+			<div class="bidAmount col-xs-6">0.00</div>
+
+			<div class="rightBtnContainer col-xs-3">
+				<img src="img/rightBtn.png">
+			</div>
+		</div>
+
+		<div class="submitBtnContainer row"><input class="submitBtn" type="button" value="Submit Bid" /></div>
+	</div>
+
+	<script type="text/javascript">
+		var flag=0;
+
+		$(".selectBox").change(function(){
+			var optionSelected = $('.selectBox :selected').val();
+			switch(optionSelected){
+				case "0":
+					$(".productImage").attr("src", "img/placeholder.jpg");
+					$(".productName").text("-");
+					$(".productDescription").text("-");
+					$(".bidCloseDate").text("-");
+					$(".currentBidAmount").text("0.00");
+					$(".bidAmount").text("0.00");
+					flag=0;
+					break;
+
+				case "1":
+					$(".productImage").attr("src", "img/onion.jpg");
+					$(".productName").text("Naati Red Onion");
+					$(".productDescription").text("Lorem ipsum dolor sit amet, consectetur adipisicing elit.");
+					$(".bidCloseDate").text("21-06-14");
+					$(".currentBidAmount").text("1400.00");
+					$(".bidAmount").text("1400.00");
+					flag=1;
+					break;
+
+				case "2":
+					$(".productImage").attr("src", "img/potato.jpg");
+					$(".productName").text("Potato Medium");
+					$(".productDescription").text("Lorem ipsum dolor sit amet, consectetur adipisicing elit.");
+					$(".bidCloseDate").text("24-06-14");
+					$(".currentBidAmount").text("1950.00");
+					$(".bidAmount").text("1950.00");
+					flag=1;
+					break;
+
+				case "3":
+					$(".productImage").attr("src", "img/tomato.jpg");
+					$(".productName").text("Tomato Medium Red");
+					$(".productDescription").text("Lorem ipsum dolor sit amet, consectetur adipisicing elit.");
+					$(".bidCloseDate").text("25-06-14");
+					$(".currentBidAmount").text("1740.00");
+					$(".bidAmount").text("1740.00");
+					flag=1;
+					break;
+			}
+		})
+
+		$(".leftBtnContainer").click(function(){
+			if (flag!=0) {
+				var bidAmount = $(".bidAmount").text();
+				bidAmount *= 1;
+				bidAmount -= 10;
+				bidAmount += ".00";
+				$(".bidAmount").text(bidAmount);
+			}
+		})
+
+		$(".rightBtnContainer").click(function(){
+			if (flag!=0) {
+				var bidAmount = $(".bidAmount").text();
+				bidAmount *= 1;
+				bidAmount += 10;
+				bidAmount += ".00";
+				$(".bidAmount").text(bidAmount);
+			}
+		})
+
+		$(".submitBtn").click(function(){
+			message = "Thank you for your bid of\nAmount: Rs."+$(".bidAmount").text()+" on\nProduct: "+$(".productName").text()+"\nWe will notify you once bidding closes or when someone bids a lower amount than you.";
+        	Android.sendMail(message);
+        	$(".messageContainer").show();
+        	$(".message").text("Thank you for your bid of Rs."+$(".bidAmount").text()+" on "+$(".productName").text());
+		})
+
+		$(".applyMoreBtn").click(function(){
+	    	$(".messageContainer").hide();
+	    	$(".productImage").attr("src", "img/placeholder.jpg");
+			$(".productName").text("-");
+			$(".productDescription").text("-");
+			$(".bidCloseDate").text("-");
+			$(".currentBidAmount").text("0.00");
+			$(".bidAmount").text("0.00");
+			flag=0;
+	    })
+
+	    $(".returnToAppBtn").click(function(){
+	    	Android.exit();
+	    })
+
+	    $(document).ready(function(){
+			var userName = Android.getUserName();
+			$(".userArea").text("Welcome "+userName);
+		})
+	</script>
+</body>
+
+</html>

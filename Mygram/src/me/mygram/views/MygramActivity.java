@@ -2,6 +2,7 @@ package me.mygram.views;
 
 import me.mygram.controllers.services.MailService;
 import me.mygram.controllers.services.SpringboardService;
+import me.mygram.models.Credentials;
 import me.mygram.models.Mygram;
 
 public interface MygramActivity {
@@ -13,5 +14,9 @@ public interface MygramActivity {
 	public MailService getMailService();
 	
 	public SpringboardService getSpringboardService();
+	
+	public Credentials getCredentials();
+	
+	public void setCredentials(Credentials credentials);
 
 }

@@ -3,14 +3,8 @@ package me.mygram.controllers.services;
 import java.util.ArrayList;
 
 import android.content.Context;
-import me.mygram.R;
-import me.mygram.models.Contact;
 import me.mygram.models.Conversation;
-import me.mygram.models.EmailMessage;
-import me.mygram.models.Mail;
 import me.mygram.models.Message;
-import me.mygram.models.Notification;
-import me.mygram.models.SMS;
 
 public class MailService implements GenericMailService{
 	

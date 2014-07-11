@@ -21,16 +21,16 @@ public class SpringboardService implements GenericSpringboardService{
 		final int blur_icon=R.drawable.blur_icon;
 		final int dropbox_icon=R.drawable.dropbox_icon;
 		final int instagram_icon=R.drawable.instagram_icon;
-		final int linkedin_icon=R.drawable.linkedin_icon;
-		final int skype_icon=R.drawable.skype_icon;
+		final int irctc_icon=R.drawable.irctc;
+		final int flipkart_icon=R.drawable.flipkart;
 		
 		
-		roster.add(new Vendor("Featured App").setIcon(skype_icon).setDescription("This is the featured app. It gets to be here right on top"));
-		roster.add(new Vendor("LinkedIn").setIcon(linkedin_icon).setDescription("This is a description of linked in"));
-		roster.add(new Vendor("Instagram").setIcon(instagram_icon).setDescription("This is a description of instagram"));
-		roster.add(new Vendor("Dropbox").setIcon(dropbox_icon).setDescription("This is a description of dropbox"));
-		roster.add(new Vendor("Blur").setIcon(blur_icon).setDescription("This is a description of blur"));
-		roster.add(new Vendor("Amazon").setIcon(amazon_icon).setDescription("This is a description of amazon"));
+		roster.add(new Vendor("Flipkart").setIcon(flipkart_icon).setDescription("Everything from Fashion to \nCellphones and electronics!").setUrl("file:///android_asset/flipkart.html"));
+		roster.add(new Vendor("IRCTC").setIcon(irctc_icon).setDescription("Book train tickets \non Indian Railways").setUrl("file:///android_asset/krishiSoochana.html"));
+		roster.add(new Vendor("Instagram").setIcon(instagram_icon).setDescription("This is a description \nof instagram").setUrl("file:///android_asset/mandi.html"));
+		roster.add(new Vendor("Dropbox").setIcon(dropbox_icon).setDescription("This is a description of dropbox").setUrl("file:///android_asset/jobPortal.html"));
+		roster.add(new Vendor("Blur").setIcon(blur_icon).setDescription("This is a description \nof blur").setUrl("file:///android_asset/flipkart.html"));
+		roster.add(new Vendor("Amazon").setIcon(amazon_icon).setDescription("This is a description \nof amazon").setUrl("file:///android_asset/vendorLogin.html"));
 		return roster;
 	}
 

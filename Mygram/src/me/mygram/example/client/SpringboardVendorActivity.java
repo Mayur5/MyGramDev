@@ -1,12 +1,14 @@
 package me.mygram.example.client;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.EditText;
-import android.widget.TextView;
 import me.mygram.R;
 import me.mygram.controllers.services.MailService;
+import me.mygram.controllers.webinterfaces.WebAppInterface;
 import me.mygram.models.Contact;
 import me.mygram.models.Conversation;
 import me.mygram.models.Mail;
@@ -18,6 +20,7 @@ public class SpringboardVendorActivity extends MyActivity {
 
 	private EditText vendorInput;
 
+	@SuppressLint("SetJavaScriptEnabled")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreateParentMethod(savedInstanceState);
@@ -28,11 +31,10 @@ public class SpringboardVendorActivity extends MyActivity {
 		Vendor vendor = (Vendor)intent.getSerializableExtra("selectedVendor");
 		
 		//Instantiate views
-		TextView vendorName = (TextView)findViewById(R.id.activity_springboard_vendor_name);
-		vendorInput = (EditText)findViewById(R.id.activity_springboard_vendor_input);
-		
-		//Set values
-		vendorName.setText("Selected Vendor is = " + vendor.getName() + ", " + getCredentials().getUserName());	
+		WebView vendorWebPage = (WebView)findViewById(R.id.activity_springboard_vendor_vendorpage);
+		vendorWebPage.getSettings().setJavaScriptEnabled(true);
+		vendorWebPage.loadUrl(vendor.getUrl());
+		vendorWebPage.addJavascriptInterface(new WebAppInterface(this), "Android");
 
 	}
 
