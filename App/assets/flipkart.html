@@ -30,7 +30,7 @@
 						First Name&nbsp&nbsp
 					</td>
 					<td>
-						<input class="firstNameField formField" type="text" value="Rajesh" />
+						<input class="firstNameField formField" id="username" type="text" value="Rajesh" />
 					</td>
 				</tr>
 				<tr>
@@ -38,7 +38,7 @@
 						Last Name&nbsp&nbsp
 					</td>
 					<td>
-						<input class="LastNameField formField" type="text" value="Bheemraju" />
+						<input class="LastNameField formField" id="langPref" type="text" value="Bheemraju" />
 					</td>
 				</tr>
 				<tr>
@@ -71,8 +71,8 @@
 		})
 		$(".submitBtn").click(function(){
 			message = "Hi "+userName+"\nThanks confirming your details and downloading the Flipkart App!";
-        	Android.sendMail(message);
 			window.open("https://play.google.com/store/apps/details?id=com.flipkart.android");
+        	Android.submit(message);
 		})
 	</script>
 

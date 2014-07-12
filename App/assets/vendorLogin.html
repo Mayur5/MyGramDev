@@ -6,14 +6,15 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>Auth Demo</title>
     <script type="text/javascript">
-    	function showAndroidToast(toast) {
-        	Android.submit(toast);
+    	function showAndroidToast(message) {
+        	Android.submit(message);
     	}
 	</script>
 </head>
 
 <body >
-    
+    <input type="text" id="username" /><br>
+    <input type="text" id="langPref" /><br>
 	<input type="button" value="Say hello" onClick="showAndroidToast('Hello Android!')" />
 
 </body>

@@ -1,28 +1,27 @@
 package me.mygram.example.client;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
-import android.widget.EditText;
+import android.webkit.WebViewClient;
+import android.widget.Toast;
 import me.mygram.R;
-import me.mygram.controllers.services.MailService;
-import me.mygram.controllers.webinterfaces.WebAppInterface;
-import me.mygram.models.Contact;
-import me.mygram.models.Conversation;
-import me.mygram.models.Mail;
-import me.mygram.models.Message;
+import me.mygram.models.Credentials;
 import me.mygram.models.Vendor;
 import me.mygram.views.MyActivity;
 
 public class SpringboardVendorActivity extends MyActivity {
 
-	private EditText vendorInput;
+	WebView vendorWebPage;
+	Credentials credentials;
 
 	@SuppressLint("SetJavaScriptEnabled")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		credentials = getCredentials();
 		super.onCreateParentMethod(savedInstanceState);
 		setContentView(R.layout.activity_springboard_vendor);
 		
@@ -31,11 +30,17 @@ public class SpringboardVendorActivity extends MyActivity {
 		Vendor vendor = (Vendor)intent.getSerializableExtra("selectedVendor");
 		
 		//Instantiate views
-		WebView vendorWebPage = (WebView)findViewById(R.id.activity_springboard_vendor_vendorpage);
-		vendorWebPage.getSettings().setJavaScriptEnabled(true);
+		vendorWebPage = (WebView)findViewById(R.id.activity_springboard_vendor_vendorpage);
 		vendorWebPage.loadUrl(vendor.getUrl());
+		vendorWebPage.getSettings().setJavaScriptEnabled(true);
 		vendorWebPage.addJavascriptInterface(new WebAppInterface(this), "Android");
-
+		vendorWebPage.setWebViewClient(new WebViewClient() {
+		    public void onPageFinished(WebView view, String url) {
+		        view.loadUrl("javascript:document.getElementById('username').value = '" +
+		        credentials.getUserName() +
+		        "';document.getElementById('langPref').value='"+credentials.getLanguagePreference()+"';");
+		    }
+		});
 	}
 
 	@Override
@@ -44,25 +49,23 @@ public class SpringboardVendorActivity extends MyActivity {
 
 	}
 
-	public void submitInput(View v) {
-		//Get submission
-		String submission = vendorInput.getText().toString();
-		Contact contact = new Contact("Springboard", "Service").setProfilePic(R.drawable.grid);
-		
-		//Create mail
-		Message vendorEmail = (Message) new Mail(submission)
-			.setAttachment(R.drawable.notification3)
-			.setAttachmentType("image")
-			.setCorrespondent(contact);
-		
-		//Create Conversation
-		Conversation c = new Conversation();
-		c.setCorrespondent(contact);
-		c.appendMessage(vendorEmail);
-				
-		//Send to MailService
-		MailService mailService = getMailService();
-		mailService.addConversation(c);
-		finish();
+	public WebView getVendorWebPage() {
+		return vendorWebPage;
+	}
+	
+	public class WebAppInterface {
+		Context mContext;
+
+	    /** Instantiate the interface and set the context */
+	    public WebAppInterface(Context c) {
+	        mContext = c;
+	    }
+
+	    /** Show a toast from the web page */
+	    @JavascriptInterface
+	    public void submit(String toast) {
+	        Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
+	        SpringboardVendorActivity.this.vendorWebPage.loadUrl("https://play.google.com/store/apps/details?id=com.flipkart.android");
+	    }
 	}
 }
