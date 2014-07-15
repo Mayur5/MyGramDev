@@ -1,0 +1,140 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context="me.mygram.example.client.ConversationActivity"
+    tools:ignore="MergeRootFrame">
+    
+    <RelativeLayout
+        android:id="@+id/title_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:layout_gravity="top"
+        android:background="#ffffff">
+        
+        <ImageView
+            android:id="@+id/title_bar_logo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:contentDescription="@string/hello_world"
+            android:src="@drawable/conversation" />
+        
+        <ImageView
+            android:id="@+id/conversation_correspondent_profile_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/title_bar_logo"
+            android:contentDescription="@string/go"
+            android:src="@drawable/user" />
+	        
+        <TextView
+            android:id="@+id/conversation_correspondent_name"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/conversation_correspondent_profile_pic"
+            android:text="User Name" />
+        
+        <ImageView
+            android:id="@+id/title_bar_hamburger"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/hello_world"
+            android:src="@drawable/hamburger_icon_temp" />
+        
+    </RelativeLayout>    
+
+    
+	<RelativeLayout android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:paddingLeft="@dimen/activity_horizontal_margin"
+	                android:paddingRight="@dimen/activity_horizontal_margin"
+	                android:paddingTop="@dimen/activity_vertical_margin"
+	                android:paddingBottom="@dimen/activity_vertical_margin" >
+	
+	    <EditText
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:inputType="textEmailAddress"
+	            android:ems="10"
+	            android:id="@+id/email"
+	            android:layout_alignParentTop="true"
+	            android:layout_alignParentLeft="true"
+	            android:hint="e-mail"/>
+	
+	    <EditText
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:id="@+id/subject"
+	            android:layout_below="@+id/email"
+	            android:layout_alignLeft="@+id/email"
+	            android:hint="subject"/>
+	
+	    <EditText
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:inputType="textMultiLine"
+	            android:ems="10"
+	            android:id="@+id/message"
+	            android:layout_below="@+id/subject"
+	            android:layout_alignParentLeft="true"
+	            android:hint="message"
+	            android:lines="5"/>
+	
+	    <Button
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:text="Send!"
+	            android:id="@+id/send"
+	            android:layout_below="@+id/message"
+	            android:onClick="sendMail" />
+	    
+	</RelativeLayout>
+
+	<RelativeLayout
+	    android:id="@+id/bottom_bar"
+	    android:layout_width="fill_parent"
+	    android:layout_height="45dp"
+	    android:background="#ffffff" >
+
+	    <Button
+	        android:id="@+id/conversation_view_inbox_icon"
+	        android:layout_width="30dp"
+	        android:layout_height="30dp"
+	        android:layout_alignParentLeft="true"
+	        android:layout_centerVertical="true"
+	        android:layout_marginLeft="10dp"
+	        android:background="@drawable/mail"
+	        android:contentDescription="@string/hello_world"
+	        android:onClick="goToInbox" />
+
+	    <Button
+	        android:id="@+id/conversation_view_new_conversation"
+	        android:layout_width="30dp"
+	        android:layout_height="30dp"
+	        android:layout_alignParentRight="true"
+	        android:layout_centerVertical="true"
+	        android:layout_marginRight="10dp"
+	        android:layout_marginTop="10dp"
+	        android:background="@drawable/new_message"
+	        android:contentDescription="@string/hello_world"
+	        android:onClick="goToNewConversation" />
+	</RelativeLayout>
+    
+</LinearLayout>
