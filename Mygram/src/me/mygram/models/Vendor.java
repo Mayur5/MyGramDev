@@ -10,6 +10,7 @@ public class Vendor implements Serializable{
 	private String name;
 	private int icon;
 	private String description;
+	private String url;
 
 	public Vendor(String name){
 		super();
@@ -40,6 +41,15 @@ public class Vendor implements Serializable{
 	public Vendor setDescription(String description) {
 		this.description = description;
 		return this;
+	}
+
+	public Vendor setUrl(String url) {
+		this.url = url;
+		return this;
+	}
+	
+	public String getUrl() {
+		return url;
 	}
 
 }
