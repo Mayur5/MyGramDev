@@ -32,6 +32,6 @@ public interface GenericMessage {
 	
 	public boolean isNotification();
 
-	public Message setCorrespondent(Contact contact);
+	public MyMessage setCorrespondent(Contact contact);
 	
 }

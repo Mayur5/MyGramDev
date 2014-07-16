@@ -46,6 +46,8 @@ public class AppActivity extends MyActivity {
 		final InboxViewAdapter adapter = new InboxViewAdapter(this, R.layout.inbox_item, inbox);
 		inboxView.setAdapter(adapter);
 		
+		
+		
 		//Set clickListener
 		inboxView.setOnItemClickListener(new OnItemClickListener() {
 

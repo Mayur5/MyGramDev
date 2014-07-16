@@ -19,7 +19,7 @@ public class Notification extends NotificationMessage implements Serializable{
 		return attachment;
 	}
 
-	public Message setAttachment(int attachment) {
+	public MyMessage setAttachment(int attachment) {
 		this.attachment = attachment;
 		return this;
 	}

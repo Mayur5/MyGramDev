@@ -9,27 +9,27 @@ public class Conversation implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 797774581112946203L;
-	private ArrayList<Message> messages = new ArrayList<Message>();
+	private ArrayList<MyMessage> messages = new ArrayList<MyMessage>();
 	private Contact correspondent;
 	
 	public Conversation(){
 		super();
 	}
 	
-	public Conversation(ArrayList<Message> messages) {
+	public Conversation(ArrayList<MyMessage> messages) {
 		super();
 		this.messages = messages;
 	}
 	
-	public Message getMessageAt(int index) {
+	public MyMessage getMessageAt(int index) {
 		return messages.get(index);
 	}
 	
-	public ArrayList<Message> getMessages() {
+	public ArrayList<MyMessage> getMessages() {
 		return messages;
 	}
 
-	public void setMessages(ArrayList<Message> conversations) {
+	public void setMessages(ArrayList<MyMessage> conversations) {
 		this.messages = conversations;
 	}
 
@@ -60,7 +60,7 @@ public class Conversation implements Serializable {
 		return snippet;
 	}
 
-	public void appendMessage(Message message) {
+	public void appendMessage(MyMessage message) {
 		// TODO Auto-generated method stub
 		messages.add(message);
 	}
@@ -75,7 +75,7 @@ public class Conversation implements Serializable {
 		this.correspondent = contact;
 	}
 
-	public Message getLastMessage() {
+	public MyMessage getLastMessage() {
 		// TODO Auto-generated method stub
 		return messages.get(messages.size() - 1);
 	}

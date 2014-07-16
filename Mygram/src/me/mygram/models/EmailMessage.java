@@ -3,7 +3,7 @@ package me.mygram.models;
 import java.io.Serializable;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 
-public abstract class EmailMessage extends Message implements Serializable{
+public abstract class EmailMessage extends MyMessage implements Serializable{
 	
 	/**
 	 * 
@@ -114,7 +114,7 @@ public abstract class EmailMessage extends Message implements Serializable{
 	}
 
 	@Override
-	public Message setCorrespondent(Contact contact) {
+	public MyMessage setCorrespondent(Contact contact) {
 		// TODO Auto-generated method stub
 		this.correspondent = contact;
 		return this;

@@ -29,6 +29,7 @@ public class Inbox implements GenericInbox{
 	public void sync() {
 		// TODO Auto-generated method stub
 		this.conversations = mailService.sync(conversations);
+		
 	}
 	
 	@Override

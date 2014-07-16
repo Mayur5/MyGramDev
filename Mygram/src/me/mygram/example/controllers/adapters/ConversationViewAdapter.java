@@ -6,7 +6,7 @@ import me.mygram.R;
 import me.mygram.models.Contact;
 import me.mygram.models.Conversation;
 import me.mygram.models.Mail;
-import me.mygram.models.Message;
+import me.mygram.models.MyMessage;
 import me.mygram.models.Notification;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -17,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class ConversationViewAdapter extends ArrayAdapter<Message> {
+public class ConversationViewAdapter extends ArrayAdapter<MyMessage> {
 	
 	private Context context;
 	private Conversation conversation;
@@ -38,7 +38,7 @@ public class ConversationViewAdapter extends ArrayAdapter<Message> {
 		TextView textView = (TextView)rowView.findViewById(R.id.message_text);
 		ImageView imageView = (ImageView)rowView.findViewById(R.id.image_attachment);
 		TextView timeStampTextView = (TextView)rowView.findViewById(R.id.conversation_message_time_stamp);
-		Message m = conversation.getMessageAt(position);
+		MyMessage m = conversation.getMessageAt(position);
 		
 		//Set Message text, time stamp
 		textView.setText(m.toString());

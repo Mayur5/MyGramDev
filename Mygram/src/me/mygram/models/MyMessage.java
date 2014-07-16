@@ -2,7 +2,7 @@ package me.mygram.models;
 
 import java.util.Date;
 
-public abstract class Message implements GenericMessage{
+public abstract class MyMessage implements GenericMessage{
 	
 	public String toString(){
 		return this.getBody();

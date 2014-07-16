@@ -5,7 +5,7 @@ import java.util.Date;
 
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 
-public abstract class SMSMessage extends Message implements Serializable{
+public abstract class SMSMessage extends MyMessage implements Serializable{
 	
 	/**
 	 * 
@@ -80,7 +80,7 @@ public abstract class SMSMessage extends Message implements Serializable{
 		return correspondent;
 	}
 	@Override
-	public Message setCorrespondent(Contact contact) {
+	public MyMessage setCorrespondent(Contact contact) {
 		// TODO Auto-generated method stub
 		this.correspondent = contact;
 		return this;

@@ -57,7 +57,7 @@ public class ConversationActivity extends MyActivity {
 		String email = emailEdit.getText().toString();
         String subject = subjectEdit.getText().toString();
         String message = messageEdit.getText().toString();
-        sendMail(email, subject, message, this);
+        sendMail(email, subject, message);
 	}
 	
 	public void goToInbox(View v) {

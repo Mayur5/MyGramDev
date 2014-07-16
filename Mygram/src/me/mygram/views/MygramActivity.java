@@ -18,5 +18,9 @@ public interface MygramActivity {
 	public Credentials getCredentials();
 	
 	public void setCredentials(Credentials credentials);
+	
+	public void sendMail(String email, String subject, String messageBody);
+	
+	//public Inbox fetchMail();
 
 }

@@ -3,7 +3,7 @@ package me.mygram.models;
 import java.io.Serializable;
 import java.util.Date;
 
-public abstract class NotificationMessage extends Message implements Serializable {
+public abstract class NotificationMessage extends MyMessage implements Serializable {
 
 	/**
 	 * 
@@ -65,7 +65,7 @@ public abstract class NotificationMessage extends Message implements Serializabl
 		return mygram;
 	}
 	@Override
-	public Message setCorrespondent(Contact contact) {
+	public MyMessage setCorrespondent(Contact contact) {
 		// TODO Auto-generated method stub
 		return this;
 	}
