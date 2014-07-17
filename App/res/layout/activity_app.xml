@@ -23,7 +23,8 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:contentDescription="@string/hello_world"
-            android:src="@drawable/mail" />
+            android:src="@drawable/mail"
+            android:onClick="refresh" />
         
         <ImageView
             android:id="@+id/title_bar_hamburger"

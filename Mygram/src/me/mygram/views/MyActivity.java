@@ -4,6 +4,7 @@ import me.mygram.controllers.factories.MailServiceFactory;
 import me.mygram.controllers.factories.SpringboardServiceFactory;
 import me.mygram.controllers.services.MailService;
 import me.mygram.controllers.services.SpringboardService;
+import me.mygram.example.controllers.adapters.InboxViewAdapter;
 import me.mygram.models.Credentials;
 import me.mygram.models.Mygram;
 import android.app.Activity;
@@ -67,6 +68,14 @@ public abstract class MyActivity extends Activity implements MygramActivity{
 	public void sendMail(String email, String subject, String messageBody) {
         getMailService().sendMail(email, subject, messageBody, this);
     }
+	
+	public void setInboxAdapter(InboxViewAdapter adapter) {
+		getApp().setInboxAdapter(adapter);
+	}
+	
+	public InboxViewAdapter getInboxAdapter(){
+		return getApp().getInboxAdapter();
+	}
     
 //    public Inbox fetchMail() {
 //    	try {

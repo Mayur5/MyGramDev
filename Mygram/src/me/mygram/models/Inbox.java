@@ -2,6 +2,7 @@ package me.mygram.models;
 
 import java.util.ArrayList;
 
+import android.content.Context;
 import me.mygram.controllers.services.MailService;
 
 public class Inbox implements GenericInbox{
@@ -26,10 +27,9 @@ public class Inbox implements GenericInbox{
 	}
 
 	@Override
-	public void sync() {
+	public void sync(Context context) {
 		// TODO Auto-generated method stub
-		this.conversations = mailService.sync(conversations);
-		
+		this.conversations = mailService.sync(conversations, context);
 	}
 	
 	@Override

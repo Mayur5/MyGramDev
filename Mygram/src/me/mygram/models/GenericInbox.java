@@ -2,6 +2,7 @@ package me.mygram.models;
 
 import java.util.ArrayList;
 
+import android.content.Context;
 import me.mygram.controllers.services.MailService;
 
 public interface GenericInbox {
@@ -10,7 +11,7 @@ public interface GenericInbox {
 	
 	public void setMailService(MailService mailService);
 	
-	public void sync();
+	public void sync(Context context);
 	
 	public ArrayList<Conversation> getConversations();
 	

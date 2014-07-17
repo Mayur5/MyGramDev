@@ -26,11 +26,13 @@ import me.mygram.models.Contact;
 import me.mygram.models.Conversation;
 import me.mygram.models.Mail;
 import me.mygram.models.MyMessage;
+import me.mygram.views.MyActivity;
 
 public class MailService implements GenericMailService{
 	
 	Context context;
 	ArrayList<Conversation> conversations = new ArrayList<Conversation>();
+	ArrayList<Conversation> temporaryConversations = new ArrayList<Conversation>();
 	
 	public MailService(){
 		super();
@@ -42,29 +44,13 @@ public class MailService implements GenericMailService{
 	}
 
 	@Override
-	public ArrayList<Conversation> sync(ArrayList<Conversation> conversations) {
+	public ArrayList<Conversation> sync(ArrayList<Conversation> conversations, Context context) {
 		// Dummy sync implemented - TODO
 		if(conversations.size() == 0) {
 			conversations = dummyConversations();
 		}
+		this.context = context;
 		fetchMail();
-//		Message message = fetchMail();
-//		String content = "";
-//		Address address = null;
-//		try {
-//			content = message.getContent().toString();
-//			address = message.getFrom()[0];
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (MessagingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		MyMessage testMessage = new Mail(content).setCorrespondent(new Contact(address.toString(), ""));
-//		Conversation conversation = new Conversation();
-//		conversation.appendMessage(testMessage);
-//		conversations.add(conversation);
 		return conversations;
 	}
 
@@ -156,9 +142,10 @@ public class MailService implements GenericMailService{
 	            System.out.println("CONTENT:" + bp.getContent());
 	            MyMessage testMessage = new Mail(bp.getContent().toString()).setCorrespondent(new Contact(in[0].toString(), ""));
 	    		Conversation conversation = new Conversation();
+	    		temporaryConversations = conversations;
 	    		conversation.setCorrespondent(new Contact("Test", "Sender"));
 	    		conversation.appendMessage(testMessage);
-	    		conversations.add(conversation);
+	    		temporaryConversations.add(0, conversation);
 	        } catch (Exception mex) {
 	            mex.printStackTrace();
 	        }
@@ -174,7 +161,8 @@ public class MailService implements GenericMailService{
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            //progressDialog.dismiss();
+            conversations = temporaryConversations;
+            ((MyActivity)context).getInboxAdapter().notifyDataSetChanged();
         }
     	
     }

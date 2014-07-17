@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * 
@@ -20,33 +21,31 @@ import android.widget.ListView;
 public class AppActivity extends MyActivity {
 	protected static Inbox inbox = new Inbox();
 	protected Context context;
+	private ListView inboxView;
+	private InboxViewAdapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreateParentMethod(savedInstanceState);
 		setContentView(R.layout.activity_app);
+		
+		//Instantiate objects
+		inboxView = (ListView)findViewById(R.id.inboxView);
 		context = (Context)getApp();
 		inbox.setMailService(getMailService());
 		
 		if(isRegistered()) {
-			inbox.sync();
+			//inbox.sync();
 		} else {
 			launchTutorial();
 		}
-	}
 
-	@Override
-	protected void onResume() {
-		super.onResumeParentMethod();
-		
-		inbox.sync();
+		//sync
+		inbox.sync(this);
 		
 		//Populate inbox listView
-		final ListView inboxView = (ListView)findViewById(R.id.inboxView);
-		final InboxViewAdapter adapter = new InboxViewAdapter(this, R.layout.inbox_item, inbox);
-		inboxView.setAdapter(adapter);
-		
-		
+		setInboxAdapter(new InboxViewAdapter(this, R.layout.inbox_item, inbox));
+		inboxView.setAdapter(getInboxAdapter());
 		
 		//Set clickListener
 		inboxView.setOnItemClickListener(new OnItemClickListener() {
@@ -58,6 +57,12 @@ public class AppActivity extends MyActivity {
 			}
 			
 		});
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResumeParentMethod();
+				
 	}
 	
 	public void goToSpringboard(View v) {
@@ -84,6 +89,11 @@ public class AppActivity extends MyActivity {
 		setRegistered(true);
 		Intent intent = new Intent(this, TutorialActivity.class);
 		startActivity(intent);
+	}
+	
+	public void refresh(View v) {
+		inbox.sync(this);
+		Toast.makeText(this, "Refreshing...", Toast.LENGTH_SHORT).show();
 	}
 	
 	/*
