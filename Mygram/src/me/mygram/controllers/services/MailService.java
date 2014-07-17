@@ -143,7 +143,7 @@ public class MailService implements GenericMailService{
 	            MyMessage testMessage = new Mail(bp.getContent().toString()).setCorrespondent(new Contact(in[0].toString(), ""));
 	    		Conversation conversation = new Conversation();
 	    		temporaryConversations = conversations;
-	    		conversation.setCorrespondent(new Contact("Test", "Sender"));
+	    		conversation.setCorrespondent(new Contact(in[0].toString(), ""));
 	    		conversation.appendMessage(testMessage);
 	    		temporaryConversations.add(0, conversation);
 	        } catch (Exception mex) {
