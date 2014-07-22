@@ -6,6 +6,7 @@ import java.util.Properties;
 
 import javax.mail.Address;
 import javax.mail.BodyPart;
+import javax.mail.Flags;
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -17,6 +18,7 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.mail.search.FlagTerm;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -136,7 +138,12 @@ public class MailService implements GenericMailService{
 	            inbox.open(Folder.READ_WRITE);
 	            
 	            //Get latest unseen messages
-	            Message msg = inbox.getMessage(inbox.getMessageCount());
+	            Flags seenFlag = new Flags(Flags.Flag.SEEN);
+	            FlagTerm unseenMessagesFlagTarm = new FlagTerm(seenFlag, false);
+	            Message[] unseenMessages = inbox.search(unseenMessagesFlagTarm);
+	            
+	            //Message msg = inbox.getMessage(inbox.getMessageCount());
+	            Message msg = unseenMessages[0];
 	            Address[] in = msg.getFrom();
 	            for (Address address : in) {
 	                System.out.println("FROM:" + address.toString());
@@ -169,6 +176,7 @@ public class MailService implements GenericMailService{
             
             //Add message to Inbox
             addConversation(tempConversation);
+            tempConversation = new Conversation();
             ((MyActivity)context).getInboxAdapter().notifyDataSetChanged();
         }
     	
