@@ -1,11 +1,12 @@
 package me.mygram.controllers.services;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import javax.mail.Address;
 import javax.mail.BodyPart;
+import javax.mail.FetchProfile;
 import javax.mail.Flags;
 import javax.mail.Folder;
 import javax.mail.Message;
@@ -36,6 +37,8 @@ public class MailService implements GenericMailService{
 	ArrayList<Conversation> conversations = new ArrayList<Conversation>();
 	ArrayList<Conversation> temporaryConversations = new ArrayList<Conversation>();
 	Conversation tempConversation = new Conversation();
+	Message[] unseenMessages;
+	ArrayList<MyMessage> myUnseenMessages = new ArrayList<MyMessage>();
 	
 	public MailService(){
 		super();
@@ -137,27 +140,44 @@ public class MailService implements GenericMailService{
 	            Folder inbox = store.getFolder("INBOX");
 	            inbox.open(Folder.READ_WRITE);
 	            
-	            //Get latest unseen messages
+	            //Get references to latest unseen messages
 	            Flags seenFlag = new Flags(Flags.Flag.SEEN);
 	            FlagTerm unseenMessagesFlagTarm = new FlagTerm(seenFlag, false);
-	            Message[] unseenMessages = inbox.search(unseenMessagesFlagTarm);
+	            unseenMessages = inbox.search(unseenMessagesFlagTarm);
 	            
-	            //Message msg = inbox.getMessage(inbox.getMessageCount());
-	            Message msg = unseenMessages[0];
-	            Address[] in = msg.getFrom();
-	            for (Address address : in) {
-	                System.out.println("FROM:" + address.toString());
+	            /* Use a suitable FetchProfile to fetch those messages */
+//	            FetchProfile fp = new FetchProfile();
+//	            fp.add(FetchProfile.Item.ENVELOPE);
+//	            fp.add(FetchProfile.Item.CONTENT_INFO);
+//	            inbox.fetch(unseenMessages, fp);
+	            
+	            //Get array of fetched messages from inbox - reusing unseenMessages - put it in myUnseenMessages
+	            //unseenMessages = inbox.getMessages();
+	            for (Message m : unseenMessages) {
+	            	Multipart mp = (Multipart) m.getContent();
+		            BodyPart bp = mp.getBodyPart(0);
+		            MyMessage testMessage = new Mail(bp.getContent().toString()).setCorrespondent(new Contact(m.getFrom().toString() + "", "T"));
+		            myUnseenMessages.add(testMessage);
+		            System.out.println("From" + m.getFrom().toString());
+		            System.out.println("Content" + bp.getContent().toString());
 	            }
-	            Multipart mp = (Multipart) msg.getContent();
-	            BodyPart bp = mp.getBodyPart(0);
-	            System.out.println("SENT DATE:" + msg.getSentDate());
-	            System.out.println("SUBJECT:" + msg.getSubject());
-	            System.out.println("CONTENT:" + bp.getContent());
-	            
-	            //Create new MyMessage
-	            MyMessage testMessage = new Mail(bp.getContent().toString()).setCorrespondent(new Contact(in[0].toString(), ""));
-	    		tempConversation.setCorrespondent(new Contact(in[0].toString(), ""));
-	    		tempConversation.appendMessage(testMessage);
+	            	            
+	            //Message msg = inbox.getMessage(inbox.getMessageCount());
+//	            Message msg = unseenMessages[0];
+//	            Address[] in = msg.getFrom();
+//	            for (Address address : in) {
+//	                System.out.println("FROM:" + address.toString());
+//	            }
+//	            Multipart mp = (Multipart) msg.getContent();
+//	            BodyPart bp = mp.getBodyPart(0);
+//	            System.out.println("SENT DATE:" + msg.getSentDate());
+//	            System.out.println("SUBJECT:" + msg.getSubject());
+//	            System.out.println("CONTENT:" + bp.getContent());
+//	            
+//	            //Create new MyMessage
+//	            MyMessage testMessage = new Mail(bp.getContent().toString()).setCorrespondent(new Contact(in[0].toString(), ""));
+//	    		tempConversation.setCorrespondent(new Contact(in[0].toString(), ""));
+//	    		tempConversation.appendMessage(testMessage);
 	        } catch (Exception mex) {
 	            mex.printStackTrace();
 	        }
@@ -174,10 +194,20 @@ public class MailService implements GenericMailService{
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             
-            //Add message to Inbox
-            addConversation(tempConversation);
-            tempConversation = new Conversation();
+            //Add unseen messages
+            try {
+				addMessages(myUnseenMessages);
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (MessagingException e) {
+				e.printStackTrace();
+			}
             ((MyActivity)context).getInboxAdapter().notifyDataSetChanged();
+            
+            //Add message to Inbox
+//            addConversation(tempConversation);
+//            tempConversation = new Conversation();
+//            ((MyActivity)context).getInboxAdapter().notifyDataSetChanged();
         }
     	
     }
@@ -213,5 +243,48 @@ public class MailService implements GenericMailService{
             return null;
         }
     }
+
+	public void addMessages(ArrayList<MyMessage> unseenMessages) throws IOException, MessagingException {
+		String fromAddress = "";
+		// Attach messages to relevant conversations
+		for (Conversation c : conversations) {
+			for (MyMessage m : unseenMessages) {
+				//Check if correspondent of m is correspondent of m
+				fromAddress = m.getCorrespondent().getFirstName();
+				if (fromAddress.equalsIgnoreCase(c.getCorrespondent().getFirstName())) {
+					//If so, add to conversation, remove from unseenMessages
+					c.appendMessage(m);
+					unseenMessages.remove(m);
+				}
+			}
+		}
+		
+		//For all remaining messages, check if they belong in conversations together, create new conversations and add them
+		if(unseenMessages == null) {
+			//Do nothing
+		} else {
+			for (MyMessage m : unseenMessages) {
+				//Create list for comparison, remove message to compare against, create new Conversation
+				ArrayList<MyMessage> comparisonList = unseenMessages;
+				comparisonList.remove(m);
+				Conversation newConversation = new Conversation();
+				newConversation.setCorrespondent((Contact)m.getCorrespondent());
+				
+				//Add message to this conversation
+				newConversation.appendMessage(m);
+				
+				for(MyMessage c : comparisonList) {
+					fromAddress = c.getCorrespondent().getFirstName();
+					if(m.getCorrespondent().getFirstName().equalsIgnoreCase(fromAddress)) {
+						//Add message to neConversation - reusing variables 
+			            newConversation.appendMessage(c);
+			            unseenMessages.remove(c);
+					}
+				}
+				//Add newConversation to conversations
+				addConversation(newConversation);
+			}
+		}
+	}
 
 }
