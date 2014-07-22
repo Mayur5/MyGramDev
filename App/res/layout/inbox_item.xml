@@ -2,7 +2,8 @@
     android:layout_width="fill_parent"
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:padding="6dip"
-    android:background="#f9f9f4" >
+    android:background="#f8f8f3"
+    android:fadingEdgeLength="0dp" >
 
     <ImageView
         android:id="@+id/profile_pic"

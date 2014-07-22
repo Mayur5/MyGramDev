@@ -33,6 +33,7 @@ public class MailService implements GenericMailService{
 	Context context;
 	ArrayList<Conversation> conversations = new ArrayList<Conversation>();
 	ArrayList<Conversation> temporaryConversations = new ArrayList<Conversation>();
+	Conversation tempConversation = new Conversation();
 	
 	public MailService(){
 		super();
@@ -126,10 +127,15 @@ public class MailService implements GenericMailService{
 		protected Void doInBackground(Session... session) {
 			// Fetch mail in background
 			try {
+				//Connect to Mygram
 	            Store store = session[0].getStore();
 	            store.connect("mygram.me", "ram@mygram.me", "ramshreyas123");
+	            
+	            //Open the Inbox folder in Read & Write mode
 	            Folder inbox = store.getFolder("INBOX");
-	            inbox.open(Folder.READ_ONLY);
+	            inbox.open(Folder.READ_WRITE);
+	            
+	            //Get latest unseen messages
 	            Message msg = inbox.getMessage(inbox.getMessageCount());
 	            Address[] in = msg.getFrom();
 	            for (Address address : in) {
@@ -140,12 +146,11 @@ public class MailService implements GenericMailService{
 	            System.out.println("SENT DATE:" + msg.getSentDate());
 	            System.out.println("SUBJECT:" + msg.getSubject());
 	            System.out.println("CONTENT:" + bp.getContent());
+	            
+	            //Create new MyMessage
 	            MyMessage testMessage = new Mail(bp.getContent().toString()).setCorrespondent(new Contact(in[0].toString(), ""));
-	    		Conversation conversation = new Conversation();
-	    		temporaryConversations = conversations;
-	    		conversation.setCorrespondent(new Contact(in[0].toString(), ""));
-	    		conversation.appendMessage(testMessage);
-	    		temporaryConversations.add(0, conversation);
+	    		tempConversation.setCorrespondent(new Contact(in[0].toString(), ""));
+	    		tempConversation.appendMessage(testMessage);
 	        } catch (Exception mex) {
 	            mex.printStackTrace();
 	        }
@@ -161,7 +166,9 @@ public class MailService implements GenericMailService{
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            conversations = temporaryConversations;
+            
+            //Add message to Inbox
+            addConversation(tempConversation);
             ((MyActivity)context).getInboxAdapter().notifyDataSetChanged();
         }
     	
