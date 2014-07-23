@@ -13,6 +13,7 @@ public class CredentialsActivity extends MyActivity {
 	EditText firstNameEditText;
 	EditText lastNameEditText;
 	EditText phoneEditText;
+	EditText dobEditText;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +29,12 @@ public class CredentialsActivity extends MyActivity {
 		//Display for confirmation
 		firstNameEditText = (EditText)findViewById(R.id.credentials_activity_first_name_edit_text);
 		lastNameEditText = (EditText)findViewById(R.id.credentials_activity_last_name_edit_text);
+		dobEditText = (EditText)findViewById(R.id.credentials_activity_dob_edit_text);
 		phoneEditText = (EditText)findViewById(R.id.credentials_activity_phone_edit_text);
 		firstNameEditText.setText(settings.get(0).toString());
 		lastNameEditText.setText(settings.get(1).toString());
-		phoneEditText.setText(settings.get(2).toString());
+		dobEditText.setText(settings.get(2).toString());
+		phoneEditText.setText(settings.get(3).toString());
 		
 		System.out.println(settings);
 		
@@ -47,6 +50,7 @@ public class CredentialsActivity extends MyActivity {
 		Credentials cred = getCredentials();
 		cred.setFirstName(firstNameEditText.getText().toString());
 		cred.setLastName(lastNameEditText.getText().toString());
+		cred.setDateOfBith(dobEditText.getText().toString());
 		cred.setPhoneNumber(phoneEditText.getText().toString());
 		setCredentials(cred);
 		finish();
