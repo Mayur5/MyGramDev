@@ -40,6 +40,12 @@ public class AppActivity extends MyActivity {
 			launchTutorial();
 		}
 
+		
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResumeParentMethod();
 		//sync
 		inbox.sync(this);
 		
@@ -57,12 +63,6 @@ public class AppActivity extends MyActivity {
 			}
 			
 		});
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResumeParentMethod();
-				
 	}
 	
 	public void goToSpringboard(View v) {
@@ -93,7 +93,7 @@ public class AppActivity extends MyActivity {
 	
 	public void refresh(View v) {
 		inbox.sync(this);
-		Toast.makeText(this, "Refreshing...", Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, "Refreshing...", Toast.LENGTH_LONG).show();
 	}
 	
 	/*

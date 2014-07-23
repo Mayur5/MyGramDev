@@ -36,8 +36,8 @@ public class TutorialActivity extends MyActivity {
 		MailService mailService = getMailService();
 		
 		//Construct conversation
-		Contact contact = (Contact) new Contact("Springboard", "Service").setProfilePic(R.drawable.grid);
-		Mail mail = (Mail) new Mail("Welcome to Mygram! Your username is " + credentials.getUserName() +
+		Contact contact = (Contact) new Contact("Mygram", "").setProfilePic(R.drawable.ic_launcher);
+		Mail mail = (Mail) new Mail("Welcome to Mygram! Your Email Address is " + credentials.getEmailAddress() +
 									" Your language preference is: " + credentials.getLanguagePreference()).setCorrespondent(contact);
 		Conversation conversation = new Conversation();
 		conversation.appendMessage(mail);
@@ -49,25 +49,44 @@ public class TutorialActivity extends MyActivity {
 	}
 	
 	private void showUsernameAndLanguagePreferenceDialog() {
-		final AlertDialog usernameAlertDialog;
-		AlertDialog.Builder usernameAlertDialogBuilder = new AlertDialog.Builder(this);
+		final AlertDialog temporaryEmailAddressAlertDialog;
+		AlertDialog.Builder temporaryEmailAddressAlertDialogBuilder = new AlertDialog.Builder(this);
+		final AlertDialog emailPasswordAlertDialog;
+		AlertDialog.Builder emailPasswordAlertDialogBuilder = new AlertDialog.Builder(this);
 		final AlertDialog languagePreferenceAlertDialog;
 		AlertDialog.Builder languagePreferenceAlertDialogBuilder = new AlertDialog.Builder(this);
 		
-		//Username dialog
-		final EditText usernameEditText = new EditText(this);	
-		usernameAlertDialogBuilder
-			.setTitle("Enter your username")
-			.setView(usernameEditText)
+		//Password dialog
+		final EditText emailPasswordEditText = new EditText(this);
+		emailPasswordAlertDialogBuilder
+			.setTitle("Enter the password given below:")
+			.setView(emailPasswordEditText)
 			.setPositiveButton("ok", new DialogInterface.OnClickListener() {
 				
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub
-					credentials.setUserName(usernameEditText.getText().toString());
+					credentials.setPassword(emailPasswordEditText.getText().toString());
 				}
 			});
-		usernameAlertDialog = usernameAlertDialogBuilder.create();
+		emailPasswordAlertDialog = emailPasswordAlertDialogBuilder.create();
+		
+		//Username dialog
+		final EditText temporaryEmailAddressEditText = new EditText(this);	
+		temporaryEmailAddressAlertDialogBuilder
+			.setTitle("Enter the temporary email id displayed on the card:")
+			.setView(temporaryEmailAddressEditText)
+			.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					credentials.setEmailAddress(temporaryEmailAddressEditText.getText().toString() + "@mygram.me");
+					dialog.dismiss();
+					emailPasswordAlertDialog.show();
+				}
+			});
+		temporaryEmailAddressAlertDialog = temporaryEmailAddressAlertDialogBuilder.create();
 		
 		//Language preference dialog
 		languagePreferenceAlertDialogBuilder
@@ -78,7 +97,7 @@ public class TutorialActivity extends MyActivity {
 					// TODO Auto-generated method stub
 					credentials.setLanguagePreference(languages[index].toString());
 					dialog.dismiss();
-					usernameAlertDialog.show();
+					temporaryEmailAddressAlertDialog.show();
 				}
 			});
 		

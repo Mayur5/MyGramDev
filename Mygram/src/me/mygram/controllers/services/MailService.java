@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import javax.mail.BodyPart;
-import javax.mail.FetchProfile;
 import javax.mail.Flags;
 import javax.mail.Folder;
 import javax.mail.Message;
@@ -27,6 +26,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import me.mygram.models.Contact;
 import me.mygram.models.Conversation;
+import me.mygram.models.Credentials;
 import me.mygram.models.Mail;
 import me.mygram.models.MyMessage;
 import me.mygram.views.MyActivity;
@@ -34,6 +34,7 @@ import me.mygram.views.MyActivity;
 public class MailService implements GenericMailService{
 	
 	Context context;
+	Credentials credentials;
 	ArrayList<Conversation> conversations = new ArrayList<Conversation>();
 	ArrayList<Conversation> temporaryConversations = new ArrayList<Conversation>();
 	Conversation tempConversation = new Conversation();
@@ -56,6 +57,7 @@ public class MailService implements GenericMailService{
 			conversations = dummyConversations();
 		}
 		this.context = context;
+		credentials = ((MyActivity)context).getApp().getCredentials();
 		fetchMail();
 		return conversations;
 	}
@@ -121,7 +123,7 @@ public class MailService implements GenericMailService{
 
         return Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("ram@mygram.me", "ramshreyas123");
+                return new PasswordAuthentication(credentials.getEmailAddress(), credentials.getPassword());
             }
         });
     }
@@ -145,39 +147,17 @@ public class MailService implements GenericMailService{
 	            FlagTerm unseenMessagesFlagTarm = new FlagTerm(seenFlag, false);
 	            unseenMessages = inbox.search(unseenMessagesFlagTarm);
 	            
-	            /* Use a suitable FetchProfile to fetch those messages */
-//	            FetchProfile fp = new FetchProfile();
-//	            fp.add(FetchProfile.Item.ENVELOPE);
-//	            fp.add(FetchProfile.Item.CONTENT_INFO);
-//	            inbox.fetch(unseenMessages, fp);
-	            
 	            //Get array of fetched messages from inbox - reusing unseenMessages - put it in myUnseenMessages
-	            //unseenMessages = inbox.getMessages();
 	            for (Message m : unseenMessages) {
 	            	Multipart mp = (Multipart) m.getContent();
 		            BodyPart bp = mp.getBodyPart(0);
-		            MyMessage testMessage = new Mail(bp.getContent().toString()).setCorrespondent(new Contact(m.getFrom().toString() + "", "T"));
+		            MyMessage testMessage = new Mail(bp.getContent().toString()).setCorrespondent(new Contact(m.getFrom()[0].toString(), ""));
 		            myUnseenMessages.add(testMessage);
-		            System.out.println("From" + m.getFrom().toString());
+		            System.out.println("From" + m.getFrom()[0].toString());
 		            System.out.println("Content" + bp.getContent().toString());
 	            }
 	            	            
-	            //Message msg = inbox.getMessage(inbox.getMessageCount());
-//	            Message msg = unseenMessages[0];
-//	            Address[] in = msg.getFrom();
-//	            for (Address address : in) {
-//	                System.out.println("FROM:" + address.toString());
-//	            }
-//	            Multipart mp = (Multipart) msg.getContent();
-//	            BodyPart bp = mp.getBodyPart(0);
-//	            System.out.println("SENT DATE:" + msg.getSentDate());
-//	            System.out.println("SUBJECT:" + msg.getSubject());
-//	            System.out.println("CONTENT:" + bp.getContent());
-//	            
-//	            //Create new MyMessage
-//	            MyMessage testMessage = new Mail(bp.getContent().toString()).setCorrespondent(new Contact(in[0].toString(), ""));
-//	    		tempConversation.setCorrespondent(new Contact(in[0].toString(), ""));
-//	    		tempConversation.appendMessage(testMessage);
+	            
 	        } catch (Exception mex) {
 	            mex.printStackTrace();
 	        }
@@ -278,7 +258,7 @@ public class MailService implements GenericMailService{
 					if(m.getCorrespondent().getFirstName().equalsIgnoreCase(fromAddress)) {
 						//Add message to neConversation - reusing variables 
 			            newConversation.appendMessage(c);
-			            unseenMessages.remove(c);
+			            //unseenMessages.remove(c);
 					}
 				}
 				//Add newConversation to conversations

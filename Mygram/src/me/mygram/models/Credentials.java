@@ -6,6 +6,8 @@ public class Credentials {
 	private String userName;
 	private String dateOfBith;
 	private String languagePreference;
+	private String emailAddress;
+	private String password;
 	
 	public Credentials() {
 		// TODO Auto-generated constructor stub
@@ -48,5 +50,23 @@ public class Credentials {
 	public void setLanguagePreference(String languagePreference) {
 		this.languagePreference = languagePreference;
 	}
+
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	
 
 }
