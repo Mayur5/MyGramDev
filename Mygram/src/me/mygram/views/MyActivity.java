@@ -76,27 +76,5 @@ public abstract class MyActivity extends Activity implements MygramActivity{
 	public InboxViewAdapter getInboxAdapter(){
 		return getApp().getInboxAdapter();
 	}
-    
-//    public Inbox fetchMail() {
-//    	try {
-//            Store store = session.getStore();
-//            store.connect("mygram.me", "ram@mygram.me", "ramshreyas123");
-//            Folder inbox = store.getFolder("INBOX");
-//            inbox.open(Folder.READ_ONLY);
-//            Message msg = inbox.getMessage(inbox.getMessageCount());
-//            Address[] in = msg.getFrom();
-//            for (Address address : in) {
-//                System.out.println("FROM:" + address.toString());
-//            }
-//            Multipart mp = (Multipart) msg.getContent();
-//            BodyPart bp = mp.getBodyPart(0);
-//            System.out.println("SENT DATE:" + msg.getSentDate());
-//            System.out.println("SUBJECT:" + msg.getSubject());
-//            System.out.println("CONTENT:" + bp.getContent());
-//        } catch (Exception mex) {
-//            mex.printStackTrace();
-//        }
-//    	return null;
-//    }
 	
 }

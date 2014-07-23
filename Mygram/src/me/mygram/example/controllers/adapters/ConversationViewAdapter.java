@@ -3,6 +3,7 @@ package me.mygram.example.controllers.adapters;
 import java.text.DateFormat;
 
 import me.mygram.R;
+import me.mygram.example.client.CredentialsActivity;
 import me.mygram.example.client.MySpringboardActivity;
 import me.mygram.models.Contact;
 import me.mygram.models.Conversation;
@@ -81,9 +82,16 @@ public class ConversationViewAdapter extends ArrayAdapter<MyMessage> {
 		return rowView;
 	}
 	
+	@SuppressLint("DefaultLocale")
 	private class MyWebViewClient extends WebViewClient {
 	    @Override
 	    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+	    	if (url.toLowerCase().contains("http://settings")) {
+	    		Intent intent = new Intent(context, CredentialsActivity.class);
+		    	intent.putExtra("url", url);
+		    	context.startActivity(intent);
+		        return false;
+	    	}
 	    	Intent intent = new Intent(context, MySpringboardActivity.class);
 	    	intent.putExtra("url", url);
 	    	context.startActivity(intent);
