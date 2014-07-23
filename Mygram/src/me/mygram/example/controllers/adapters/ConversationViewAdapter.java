@@ -90,7 +90,7 @@ public class ConversationViewAdapter extends ArrayAdapter<MyMessage> {
 	    		Intent intent = new Intent(context, CredentialsActivity.class);
 		    	intent.putExtra("url", url);
 		    	context.startActivity(intent);
-		        return false;
+		        return true;
 	    	}
 	    	Intent intent = new Intent(context, MySpringboardActivity.class);
 	    	intent.putExtra("url", url);

@@ -3,10 +3,16 @@ package me.mygram.example.client;
 import java.util.ArrayList;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 import me.mygram.R;
+import me.mygram.models.Credentials;
 import me.mygram.views.MyActivity;
 
 public class CredentialsActivity extends MyActivity {
+	EditText firstNameEditText;
+	EditText lastNameEditText;
+	EditText phoneEditText;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +25,14 @@ public class CredentialsActivity extends MyActivity {
 		//Parse url for settings
 		ArrayList<String> settings = parse(url);
 		
+		//Display for confirmation
+		firstNameEditText = (EditText)findViewById(R.id.credentials_activity_first_name_edit_text);
+		lastNameEditText = (EditText)findViewById(R.id.credentials_activity_last_name_edit_text);
+		phoneEditText = (EditText)findViewById(R.id.credentials_activity_phone_edit_text);
+		firstNameEditText.setText(settings.get(0).toString());
+		lastNameEditText.setText(settings.get(1).toString());
+		phoneEditText.setText(settings.get(2).toString());
+		
 		System.out.println(settings);
 		
 	}
@@ -27,6 +41,15 @@ public class CredentialsActivity extends MyActivity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResumeParentMethod();
+	}
+	
+	public void saveCredentials(View v) {
+		Credentials cred = getCredentials();
+		cred.setFirstName(firstNameEditText.getText().toString());
+		cred.setLastName(lastNameEditText.getText().toString());
+		cred.setPhoneNumber(phoneEditText.getText().toString());
+		setCredentials(cred);
+		finish();
 	}
 
 	private ArrayList<String> parse(String url) {

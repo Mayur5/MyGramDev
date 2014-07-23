@@ -8,6 +8,7 @@ public class Credentials {
 	private String languagePreference;
 	private String emailID;
 	private String password;
+	private String phoneNumber;
 	
 	public Credentials() {
 		// TODO Auto-generated constructor stub
@@ -67,6 +68,12 @@ public class Credentials {
 		this.password = password;
 	}
 
-	
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 
 }
