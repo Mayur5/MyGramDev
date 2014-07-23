@@ -3,10 +3,10 @@ package me.mygram.models;
 public class Credentials {
 	private String firstName;
 	private String lastName;
-	private String userName;
+	private String userName = "anon";
 	private String dateOfBith;
 	private String languagePreference;
-	private String emailAddress;
+	private String emailID;
 	private String password;
 	
 	public Credentials() {
@@ -51,12 +51,12 @@ public class Credentials {
 		this.languagePreference = languagePreference;
 	}
 
-	public String getEmailAddress() {
-		return emailAddress;
+	public String getEmailID() {
+		return emailID;
 	}
 
-	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
+	public void setEmailID(String emailAddress) {
+		this.emailID = emailAddress;
 	}
 
 	public String getPassword() {

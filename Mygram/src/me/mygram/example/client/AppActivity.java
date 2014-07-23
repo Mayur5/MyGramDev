@@ -22,8 +22,7 @@ public class AppActivity extends MyActivity {
 	protected static Inbox inbox = new Inbox();
 	protected Context context;
 	private ListView inboxView;
-	private InboxViewAdapter adapter;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreateParentMethod(savedInstanceState);
@@ -34,19 +33,18 @@ public class AppActivity extends MyActivity {
 		context = (Context)getApp();
 		inbox.setMailService(getMailService());
 		
+		//If not registered, launch tutorial
 		if(isRegistered()) {
 			//inbox.sync();
 		} else {
 			launchTutorial();
-		}
-
-		
+		}		
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResumeParentMethod();
-		//sync
+		//sync mailbox
 		inbox.sync(this);
 		
 		//Populate inbox listView

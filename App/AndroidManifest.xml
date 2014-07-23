@@ -45,6 +45,10 @@
             android:name="me.mygram.example.client.SpringboardVendorActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="me.mygram.example.client.MySpringboardActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

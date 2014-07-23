@@ -3,16 +3,20 @@ package me.mygram.example.controllers.adapters;
 import java.text.DateFormat;
 
 import me.mygram.R;
+import me.mygram.example.client.MySpringboardActivity;
 import me.mygram.models.Contact;
 import me.mygram.models.Conversation;
 import me.mygram.models.Mail;
 import me.mygram.models.MyMessage;
 import me.mygram.models.Notification;
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -29,6 +33,7 @@ public class ConversationViewAdapter extends ArrayAdapter<MyMessage> {
 		this.conversation = conversation;
 	}
 	
+	@SuppressLint("SetJavaScriptEnabled")
 	public View getView(int position, View convertView, ViewGroup parent) {
 		DateFormat df = DateFormat.getDateInstance();
 		
@@ -42,6 +47,8 @@ public class ConversationViewAdapter extends ArrayAdapter<MyMessage> {
 		MyMessage m = conversation.getMessageAt(position);
 		
 		//Set Message text, time stamp
+		messageBodyWebView.getSettings().setJavaScriptEnabled(true);
+		messageBodyWebView.setWebViewClient(new MyWebViewClient());
 		messageBodyWebView.loadDataWithBaseURL("nada", m.toString(), "text/html", "utf-8", "");
 		timeStampTextView.setText(df.format(m.receivedTimeStamp()));
 		
@@ -72,5 +79,15 @@ public class ConversationViewAdapter extends ArrayAdapter<MyMessage> {
 		}
 		
 		return rowView;
+	}
+	
+	private class MyWebViewClient extends WebViewClient {
+	    @Override
+	    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+	    	Intent intent = new Intent(context, MySpringboardActivity.class);
+	    	intent.putExtra("url", url);
+	    	context.startActivity(intent);
+	        return true;
+	    }
 	}
 }

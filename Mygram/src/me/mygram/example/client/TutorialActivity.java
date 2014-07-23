@@ -32,13 +32,18 @@ public class TutorialActivity extends MyActivity {
 	}
 	
 	public void done(View v) {
+		//Set the user as registered
+		getApp().setRegistered(true);
+		
+		//Set the user-entered credentials
 		setCredentials(credentials);
-		MailService mailService = getMailService();
 		
 		//Construct conversation
+		MailService mailService = getMailService();
 		Contact contact = (Contact) new Contact("Mygram", "").setProfilePic(R.drawable.ic_launcher);
-		Mail mail = (Mail) new Mail("Welcome to Mygram! Your Email Address is " + credentials.getEmailAddress() +
-									" Your language preference is: " + credentials.getLanguagePreference()).setCorrespondent(contact);
+		Mail mail = (Mail) new Mail("Welcome to Mygram! Your Email Address is " + credentials.getEmailID() +
+									" Your language preference is: " + credentials.getLanguagePreference() +
+									"<br><br><a href='http://mygram.me'>Mygram.me</a>").setCorrespondent(contact);
 		Conversation conversation = new Conversation();
 		conversation.appendMessage(mail);
 		conversation.setCorrespondent(contact);
@@ -81,7 +86,7 @@ public class TutorialActivity extends MyActivity {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub
-					credentials.setEmailAddress(temporaryEmailAddressEditText.getText().toString() + "@mygram.me");
+					credentials.setEmailID(temporaryEmailAddressEditText.getText().toString() + "@mygram.me");
 					dialog.dismiss();
 					emailPasswordAlertDialog.show();
 				}
