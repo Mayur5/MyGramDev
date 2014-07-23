@@ -12,6 +12,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -35,13 +36,13 @@ public class ConversationViewAdapter extends ArrayAdapter<MyMessage> {
 		Contact correspondent = (Contact) conversation.getMessageAt(position).getCorrespondent();
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View rowView = inflater.inflate(R.layout.conversation_item, parent, false);
-		TextView textView = (TextView)rowView.findViewById(R.id.message_text);
+		WebView messageBodyWebView = (WebView)rowView.findViewById(R.id.message_text);
 		ImageView imageView = (ImageView)rowView.findViewById(R.id.image_attachment);
 		TextView timeStampTextView = (TextView)rowView.findViewById(R.id.conversation_message_time_stamp);
 		MyMessage m = conversation.getMessageAt(position);
 		
 		//Set Message text, time stamp
-		textView.setText(m.toString());
+		messageBodyWebView.loadDataWithBaseURL("nada", m.toString(), "text/html", "utf-8", "");
 		timeStampTextView.setText(df.format(m.receivedTimeStamp()));
 		
 		//Handle attachments - two different cases for email and notifications, TODO
@@ -54,15 +55,15 @@ public class ConversationViewAdapter extends ArrayAdapter<MyMessage> {
 		
 		//Align right if sender is self
 		if (correspondent.isSelf()) {
-			RelativeLayout.LayoutParams textViewParams = (RelativeLayout.LayoutParams)textView.getLayoutParams();
-			textViewParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, 0);
-			textViewParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-			textView.setLayoutParams(textViewParams);
+			RelativeLayout.LayoutParams messageBodyWebViewParams = (RelativeLayout.LayoutParams)messageBodyWebView.getLayoutParams();
+			messageBodyWebViewParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, 0);
+			messageBodyWebViewParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+			messageBodyWebView.setLayoutParams(messageBodyWebViewParams);
 			
 			RelativeLayout.LayoutParams timeStampTextViewParams = (RelativeLayout.LayoutParams)timeStampTextView.getLayoutParams();
 			timeStampTextViewParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, 0);
 			timeStampTextViewParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-			timeStampTextView.setLayoutParams(textViewParams);
+			timeStampTextView.setLayoutParams(messageBodyWebViewParams);
 			
 			RelativeLayout.LayoutParams imageViewParams = (RelativeLayout.LayoutParams)imageView.getLayoutParams();
 			imageViewParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, 0);

@@ -107,7 +107,7 @@ public class MailService implements GenericMailService{
 
     private Message createMessage(String email, String subject, String messageBody, Session session) throws MessagingException, UnsupportedEncodingException {
         Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress("ram@mygram.me", "Ram"));
+        message.setFrom(new InternetAddress(credentials.getEmailAddress(), "Ram"));
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(email, email));
         message.setSubject(subject);
         message.setText(messageBody);
@@ -136,7 +136,7 @@ public class MailService implements GenericMailService{
 			try {
 				//Connect to Mygram
 	            Store store = session[0].getStore();
-	            store.connect("mygram.me", "ram@mygram.me", "ramshreyas123");
+	            store.connect("mygram.me", credentials.getEmailAddress(), credentials.getPassword());
 	            
 	            //Open the Inbox folder in Read & Write mode
 	            Folder inbox = store.getFolder("INBOX");
