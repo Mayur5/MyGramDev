@@ -71,8 +71,8 @@
 		})
 		$(".submitBtn").click(function(){
 			message = "Hi "+userName+"\nThanks confirming your details and downloading the Flipkart App!";
-			window.open("https://play.google.com/store/apps/details?id=com.flipkart.android");
-        	Android.submit(message);
+			//window.open("https://play.google.com/store/apps/details?id=com.flipkart.android");
+        	Android.submit(message, "market://details?id=com.flipkart.android");
 		})
 	</script>
 

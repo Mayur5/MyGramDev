@@ -69,10 +69,10 @@ public class SpringboardVendorActivity extends MyActivity {
 
 	    /** Show a toast from the web page */
 	    @JavascriptInterface
-	    public void submit(String toast) {
+	    public void submit(String toast, String actionUrl) {
 	        Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
 	        Intent intent = new Intent(Intent.ACTION_VIEW);
-	        intent.setData(Uri.parse("market://details?id=com.flipkart.android"));
+	        intent.setData(Uri.parse(actionUrl));
 	        mContext.startActivity(intent);
 	    }
 	}
