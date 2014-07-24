@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import me.mygram.R;
 import me.mygram.controllers.services.MailService;
 import me.mygram.models.Contact;
@@ -16,18 +17,57 @@ import me.mygram.views.MyActivity;
 public class TutorialActivity extends MyActivity {
 	private static Credentials credentials = new Credentials();
 	final CharSequence[] languages = {"Kannada", "Hindi", "English"};
+	int tutorialIndex = 1;
+	ImageView tutorialScreenImageView;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreateParentMethod(savedInstanceState);
 		setContentView(R.layout.activity_tutorial);
 		
+		//Instantiate views
+		tutorialScreenImageView = (ImageView)findViewById(R.id.tutorial_activity_screen); 
+		
 		//Get username and language preference
 		showUsernameAndLanguagePreferenceDialog();
 	}
-
+	
 	@Override
 	protected void onResume() {
 		super.onResumeParentMethod();
+		
+	}
+	
+	public void next(View v) {
+		tutorialIndex++;
+		switch(tutorialIndex) {
+		case 2:
+			tutorialScreenImageView.setImageResource(R.drawable.tutorial2);
+			break;
+		case 3:
+			tutorialScreenImageView.setImageResource(R.drawable.tutorial3);
+			break;
+		case 4:
+			tutorialScreenImageView.setImageResource(R.drawable.tutorial4);
+			break;
+		case 5:
+			tutorialScreenImageView.setImageResource(R.drawable.tutorial5);
+			break;
+		case 6:
+			tutorialScreenImageView.setImageResource(R.drawable.tutorial6);
+			break;
+		case 7:
+			tutorialScreenImageView.setImageResource(R.drawable.tutorial7);
+			break;
+		case 8:
+			tutorialScreenImageView.setImageResource(R.drawable.tutorial8);
+			break;
+		case 9:
+			done(v);
+		default:
+			tutorialScreenImageView.setImageResource(R.drawable.tutorial1);
+			tutorialIndex=1;
+			break;
+		}
 		
 	}
 	
