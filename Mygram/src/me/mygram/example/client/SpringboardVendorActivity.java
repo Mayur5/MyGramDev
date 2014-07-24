@@ -3,6 +3,7 @@ package me.mygram.example.client;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
@@ -36,9 +37,10 @@ public class SpringboardVendorActivity extends MyActivity {
 		vendorWebPage.addJavascriptInterface(new WebAppInterface(this), "Android");
 		vendorWebPage.setWebViewClient(new WebViewClient() {
 		    public void onPageFinished(WebView view, String url) {
-		        view.loadUrl("javascript:document.getElementById('username').value = '" +
-		        credentials.getUserName() +
-		        "';document.getElementById('langPref').value='"+credentials.getLanguagePreference()+"';");
+		        view.loadUrl("javascript:document.getElementById('firstname').value = '" + credentials.getFirstName() + "';" +
+		        			"document.getElementById('lastname').value='"+credentials.getLastName()+"';" + 
+		        			"document.getElementById('dob').value='"+credentials.getDateOfBith()+"';" + 
+		        			"document.getElementById('phone').value='"+credentials.getPhoneNumber()+"';");
 		    }
 		});
 	}
@@ -60,12 +62,18 @@ public class SpringboardVendorActivity extends MyActivity {
 	    public WebAppInterface(Context c) {
 	        mContext = c;
 	    }
+	    
+	    public String getUserName() {
+	    	return credentials.getFirstName();
+	    }
 
 	    /** Show a toast from the web page */
 	    @JavascriptInterface
 	    public void submit(String toast) {
 	        Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
-	        SpringboardVendorActivity.this.vendorWebPage.loadUrl("https://play.google.com/store/apps/details?id=com.flipkart.android");
+	        Intent intent = new Intent(Intent.ACTION_VIEW);
+	        intent.setData(Uri.parse("market://details?id=com.flipkart.android"));
+	        mContext.startActivity(intent);
 	    }
 	}
 }
